@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormControl, FormGroup, ValidationErrors, Validators } from "@angular/forms";
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { UserData } from "src/app/types/userData";
 
@@ -9,18 +9,26 @@ import { UserData } from "src/app/types/userData";
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent {
-  form: FormGroup = new FormGroup({
+  public form: FormGroup = new FormGroup({
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   });
 
-  constructor(private router: Router) {}
+  constructor(private _router: Router) {}
 
-  handleCreateNewAccountButtonClick(): void {
-    this.router.navigate(['create-new-account']);
+  public get emailControl(): AbstractControl {
+    return this.form.get('email') as AbstractControl;
   }
 
-  handleSignInButtonClick(): void {
+  public get passwordControl(): AbstractControl {
+    return this.form.get('password') as AbstractControl;
+  }
+
+  public navigateToCreateNewAccountForm(): void {
+    void this._router.navigate(['create-new-account']);
+  }
+
+  public signIn(): void {
     const usersLoginDataAsString: string | null = localStorage.getItem('usersLoginData');
 
     if (!usersLoginDataAsString) {
@@ -30,16 +38,16 @@ export class SignInComponent {
     } else {
       const usersLoginDataAsArray: UserData[] = JSON.parse(usersLoginDataAsString);
       const doesUserExist: boolean = usersLoginDataAsArray.some(userDataObj =>
-        userDataObj.email.trim() === this.form.value.email.trim()
+        userDataObj.email === this.form.value.email.trim()
         &&
-        userDataObj.password.trim() === this.form.value.password.trim()
+        userDataObj.password === this.form.value.password.trim()
       );
 
       if (doesUserExist) {
-        this.router.navigate(['/home']);
+        void this._router.navigate(['/home']);
       } else {
         const formValidationErrors: ValidationErrors | null = this.form.errors;
-        
+
         this.form.setErrors({ ...formValidationErrors, invalidData: true });
       }
     }

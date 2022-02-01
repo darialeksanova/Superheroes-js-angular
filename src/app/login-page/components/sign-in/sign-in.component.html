@@ -1,14 +1,14 @@
-<form class="form" [formGroup]="form" (ngSubmit)="handleSignInButtonClick()">
+<form class="form" [formGroup]="form" (ngSubmit)="signIn()">
   <h2 class="form__title">Sign in</h2>
   <div class="form__controls">
 
     <input class="form-control" type="text" placeholder="Email" formControlName="email">
     <div
-        *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+        *ngIf="emailControl.invalid && emailControl.touched"
         class="validations"
       >
         <p
-          *ngIf="form.get('email')?.errors?.['required']"
+          *ngIf="emailControl.errors?.['required']"
           class="validation-message"
         >
           Email is required.
@@ -17,11 +17,11 @@
 
     <input class="form-control" type="text" placeholder="Password" formControlName="password">
     <div
-        *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+        *ngIf="passwordControl.invalid && passwordControl.touched"
         class="validations"
       >
         <p
-          *ngIf="form.get('password')?.errors?.['required']"
+          *ngIf="passwordControl.errors?.['required']"
           class="validation-message"
         >
           Password is required.
@@ -36,6 +36,6 @@
     Invalid email or password.
   </div>
 
-  <button class="form__create-new-accont-button" (click)="handleCreateNewAccountButtonClick()">Create new account</button>
+  <button class="form__create-new-accont-button" (click)="navigateToCreateNewAccountForm()">Create new account</button>
   <button class="form__submit-button" type="submit" [disabled]="form.invalid">Sign in</button>
 </form>
