@@ -12,7 +12,7 @@ import { CustomUsernameValidators } from "../../custom-validators/custom-usernam
   styleUrls: ['./create-new-account.component.scss']
 })
 export class CreateNewAccountComponent implements OnInit {
-  form: FormGroup = new FormGroup({
+  public form: FormGroup = new FormGroup({
     username: new FormControl('', [
       Validators.required, 
       Validators.minLength(8),
@@ -34,45 +34,58 @@ export class CreateNewAccountComponent implements OnInit {
     ])
   })
 
-  constructor(private router: Router) {}
+  constructor(private _router: Router) {}
 
-  ngOnInit(): void {
-    this.form.get('password')?.addValidators(
+  public ngOnInit(): void {
+    this.passwordControl.addValidators(
       CustomPasswordValidators.containsPartsOfNameOrEmail(
-        this.form.get('username') as AbstractControl, 
-        this.form.get('email') as AbstractControl
+        this.usernameControl, 
+        this.emailControl
       )
     );
   }
 
-  handleSignInButtonClick(): void {
-    this.router.navigate(['sign-in']);
+  public get usernameControl(): AbstractControl {
+    return this.form.get('username') as AbstractControl;
   }
 
-  handleSignUpButtonClick(): void {
+  public get emailControl(): AbstractControl {
+    return this.form.get('email') as AbstractControl;
+  }
+
+  public get passwordControl(): AbstractControl {
+    return this.form.get('password') as AbstractControl;
+  }
+
+  public navigateToSignInForm(): void {
+    void this._router.navigate(['sign-in']);
+  }
+
+  public signUp(): void {
     const usersLoginDataAsString: string | null = localStorage.getItem('usersLoginData');
 
     if (!usersLoginDataAsString) {
-      localStorage.setItem('usersLoginData', JSON.stringify([{
-        username: this.form.get('username')?.value,
-        email: this.form.get('email')?.value,
-        password: this.form.get('password')?.value
-      }]));
+      localStorage.setItem('usersLoginData', JSON.stringify([this.createUserDataObjectFromFormValue()]));
     } else {
       const usersLoginDataAsArray: UserData[] = JSON.parse(usersLoginDataAsString);
+      const isEmailUsed: boolean = usersLoginDataAsArray.some(userDataObj => userDataObj.email === this.emailControl.value.trim());
 
-      if (usersLoginDataAsArray.some(userDataObj => userDataObj.email === this.form.get('email')?.value)) {
-        const emailValidationErrors: ValidationErrors | null | undefined = this.form.get('email')?.errors;
-        
-        this.form.get('email')?.setErrors({...emailValidationErrors, emailIsNotUnique: true});
+      if (isEmailUsed) {
+        const emailValidationErrors: ValidationErrors | null | undefined = this.emailControl.errors;
+
+        this.emailControl.setErrors({...emailValidationErrors, emailIsNotUnique: true});
       } else {
-        localStorage.setItem('usersLoginData', JSON.stringify([...usersLoginDataAsArray, {
-          username: this.form.get('username')?.value,
-          email: this.form.get('email')?.value,
-          password: this.form.get('password')?.value
-        }]));
-        this.router.navigate(['sign-in']);
+        localStorage.setItem('usersLoginData', JSON.stringify([...usersLoginDataAsArray, this.createUserDataObjectFromFormValue()]));
+        this.navigateToSignInForm();
       }
+    }
+  }
+
+  private createUserDataObjectFromFormValue(): UserData {
+    return {
+      username: this.form.value.username.trim(),
+      email: this.form.value.email.trim(),
+      password: this.form.value.password.trim()
     }
   }
 }
