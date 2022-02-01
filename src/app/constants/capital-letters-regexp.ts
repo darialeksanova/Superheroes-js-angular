@@ -1,0 +1,1 @@
+export const CAPITAL_LETTERS_REGEXP: RegExp = /[A-Z]/;

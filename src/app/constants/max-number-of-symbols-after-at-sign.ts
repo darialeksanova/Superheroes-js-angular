@@ -1,0 +1,1 @@
+export const MAX_NUMBER_OF_SYMBOLS_AFTER_AT_SIGN: number = 5;

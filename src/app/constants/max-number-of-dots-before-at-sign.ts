@@ -1,0 +1,1 @@
+export const MAX_NUMBER_OF_DOTS_BEFORE_AT_SIGN: number = 3;
