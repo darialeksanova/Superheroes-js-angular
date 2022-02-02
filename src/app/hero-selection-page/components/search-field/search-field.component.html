@@ -1,0 +1,14 @@
+<div class="wrapper">
+
+  <div class="search-bar">
+    <app-alphabet-selection></app-alphabet-selection>
+    <input class="search-bar__input" type="text" placeholder="Enter hero name" #searchInput>
+    <div class="search-bar__search-icon" (click)="searchHero(searchInput.value)">
+      <img src="../../../../assets/icons/search-solid.svg">
+    </div>
+  </div>
+
+  <div class="recent-searches">
+    <app-recent-searches *ngIf="recentSearches.length > 0"></app-recent-searches>
+  </div>
+</div>

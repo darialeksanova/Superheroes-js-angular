@@ -55,7 +55,7 @@ export class SignInComponent {
           localStorage.setItem('currentUser', JSON.stringify(userWithAccessToken));
         }
 
-        void this._router.navigate(['/home']);
+        void this._router.navigate(['/hero-selection']);
       } else {
         const formValidationErrors: ValidationErrors | null = this.form.errors;
 
