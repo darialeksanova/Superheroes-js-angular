@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { AccessTokenService } from "src/app/services/access-token.service";
 import { UserData } from "src/app/types/userData";
 
 @Component ({
@@ -14,7 +15,10 @@ export class SignInComponent {
     password: new FormControl('', Validators.required)
   });
 
-  constructor(private _router: Router) {}
+  constructor(
+    private _router: Router,
+    private _accessTokenService: AccessTokenService
+  ) {}
 
   public get emailControl(): AbstractControl {
     return this.form.get('email') as AbstractControl;
@@ -37,13 +41,20 @@ export class SignInComponent {
       this.form.setErrors({ ...formValidationErrors, invalidData: true });
     } else {
       const usersLoginDataAsArray: UserData[] = JSON.parse(usersLoginDataAsString);
-      const doesUserExist: boolean = usersLoginDataAsArray.some(userDataObj =>
+      const user: UserData | undefined = usersLoginDataAsArray.find(userDataObj =>
         userDataObj.email === this.form.value.email.trim()
         &&
         userDataObj.password === this.form.value.password.trim()
       );
 
-      if (doesUserExist) {
+      if (user) {
+
+        if (!user.accessToken || !this._accessTokenService.isAccessTokenValid(user.accessToken.expiresAt)) {
+          const userWithAccessToken: UserData = this._accessTokenService.addAccessTokenToUserData(user);
+
+          localStorage.setItem('currentUser', JSON.stringify(userWithAccessToken));
+        }
+
         void this._router.navigate(['/home']);
       } else {
         const formValidationErrors: ValidationErrors | null = this.form.errors;

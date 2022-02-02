@@ -76,9 +76,9 @@ export class CreateNewAccountComponent implements OnInit {
         this.emailControl.setErrors({...emailValidationErrors, emailIsNotUnique: true});
       } else {
         localStorage.setItem('usersLoginData', JSON.stringify([...usersLoginDataAsArray, this.createUserDataObjectFromFormValue()]));
-        this.navigateToSignInForm();
       }
     }
+    this.navigateToSignInForm();
   }
 
   private createUserDataObjectFromFormValue(): UserData {
