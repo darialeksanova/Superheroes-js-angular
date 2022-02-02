@@ -36,31 +36,37 @@ export class SignInComponent {
     const usersLoginDataAsString: string | null = localStorage.getItem('usersLoginData');
 
     if (!usersLoginDataAsString) {
-      const formValidationErrors: ValidationErrors | null = this.form.errors;
-
-      this.form.setErrors({ ...formValidationErrors, invalidData: true });
+      this.addInvalidDataErrorToFormValidationErrors();
     } else {
       const usersLoginDataAsArray: UserData[] = JSON.parse(usersLoginDataAsString);
-      const user: UserData | undefined = usersLoginDataAsArray.find(userDataObj =>
-        userDataObj.email === this.form.value.email.trim()
-        &&
-        userDataObj.password === this.form.value.password.trim()
-      );
+      const user: UserData | undefined = this.findUserByEmailAndPassword(usersLoginDataAsArray);
 
-      if (user) {
-
-        if (!user.accessToken || !this._accessTokenService.isAccessTokenValid(user.accessToken.expiresAt)) {
-          const userWithAccessToken: UserData = this._accessTokenService.addAccessTokenToUserData(user);
-
-          localStorage.setItem('currentUser', JSON.stringify(userWithAccessToken));
-        }
-
-        void this._router.navigate(['/hero-selection']);
-      } else {
-        const formValidationErrors: ValidationErrors | null = this.form.errors;
-
-        this.form.setErrors({ ...formValidationErrors, invalidData: true });
+      if (!user) {
+        this.addInvalidDataErrorToFormValidationErrors();
+        return;
       }
+
+      if (!user.accessToken || !this._accessTokenService.isAccessTokenValid(user.accessToken.expiresAt)) {
+        const userWithAccessToken: UserData = this._accessTokenService.addAccessTokenToUserData(user);
+
+        localStorage.setItem('currentUser', JSON.stringify(userWithAccessToken));
+      }
+
+      void this._router.navigate(['/hero-selection']);
     }
+  }
+
+  private addInvalidDataErrorToFormValidationErrors(): void {
+    const formValidationErrors: ValidationErrors | null = this.form.errors;
+
+    this.form.setErrors({ ...formValidationErrors, invalidData: true });
+  }
+
+  private findUserByEmailAndPassword(arrayOfUsers: UserData[]): UserData | undefined {
+    return arrayOfUsers.find(userDataObj =>
+      userDataObj.email === this.form.value.email.trim()
+      &&
+      userDataObj.password === this.form.value.password.trim()
+    );
   }
 }
