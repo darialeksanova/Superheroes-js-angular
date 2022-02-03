@@ -1,0 +1,26 @@
+<div class="wrapper">
+
+  <div class="search-bar">
+
+    <app-alphabet-selection (charOptionClick)="setSearchValueBasedOnSelectedChar($event)"></app-alphabet-selection>
+
+    <input 
+      class="search-bar__input" 
+      type="text" 
+      placeholder="Enter hero name" 
+      [formControl]="searchInput"
+    >
+
+    <div class="search-bar__search-icon" (click)="searchHero()">
+      <img src="/assets/icons/search-solid.svg">
+    </div>
+
+  </div>
+
+  <div class="validations" *ngIf="searchInput.errors?.['pattern']">
+    <p class="validation-message">
+      Wrapping spaces, numbers and special symbols are not allowed.
+    </p>
+  </div>
+
+</div>

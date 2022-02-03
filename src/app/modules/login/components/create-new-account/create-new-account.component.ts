@@ -2,9 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { UserData } from "src/app/types/userData";
-import { CustomEmailValidators } from "../../custom-validators/custom-email-validators";
-import { CustomPasswordValidators } from "../../custom-validators/custom-password-validators";
-import { CustomUsernameValidators } from "../../custom-validators/custom-username-validator";
+import { CustomEmailValidators } from "../../../../validators/custom-email-validators";
+import { CustomPasswordValidators } from "../../../../validators/custom-password-validators";
+import { CustomUsernameValidators } from "../../../../validators/custom-username-validator";
 
 @Component ({
   selector: 'app-create-new-account',

@@ -1,0 +1,57 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 15px;
+  width: 100vw;
+  height: 70px;
+  background-color: black;
+  color: #fff;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.navigation__title,
+.navigation__fight {
+  width: 200px;
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.navigation__fight {
+  cursor: pointer;
+}
+
+.navigation__user {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+}
+
+.navigation__user-info {
+  width: 100px;
+  font-weight: 700;
+  font-size: 24px;
+  flex-shrink: 0;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.navigation__user-avatar {
+  width: 70px;
+  font-weight: 700;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+

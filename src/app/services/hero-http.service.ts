@@ -17,5 +17,6 @@ export class HeroHttpService {
 }
 
 type HeroByNameResponse = {
+  response: string;
   results: Array<Hero>;
 }

@@ -1,0 +1,9 @@
+<ul class="recent-searches">
+  <li 
+    class="recent-searches__item" 
+    *ngFor="let item of recentSearches"
+    (click)="handleRecentSearchesItemClick(item)"
+  >
+    {{ item }}
+  </li>
+</ul>

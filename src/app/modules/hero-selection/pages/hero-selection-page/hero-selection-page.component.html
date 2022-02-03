@@ -1,0 +1,31 @@
+<div class="wrapper">
+  <div class="background">
+    <img src="/assets/img/hero-selection-page-bg.jpeg">
+  </div>
+
+  <div class="container">
+
+    <app-search-field 
+      (searchClick)="searchHero($event)"
+      [searchValueBasedOnRecentSearches]="searchValueBasedOnRecentSearches"
+    >
+    </app-search-field>
+
+    <app-recent-searches 
+      *ngIf="recentSearches.length > 0" 
+      [recentSearches]="recentSearches"
+      (recentSearchesItemClick)="setSearchValueBasedOnRecentSearches($event)"
+    >
+    </app-recent-searches>
+    
+    <app-heroes-list 
+      *ngIf="heroes.length > 0 || !errorOnHeroesSearch; else searchErrorMessage" 
+      [heroes]="heroes"
+    >
+    </app-heroes-list>
+
+    <ng-template #searchErrorMessage>
+      <h2 class="search-error-message">No heroes with that name found!</h2>
+    </ng-template>
+  </div>
+</div>

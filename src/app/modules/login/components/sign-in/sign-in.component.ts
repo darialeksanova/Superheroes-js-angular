@@ -52,7 +52,7 @@ export class SignInComponent {
         localStorage.setItem('currentUser', JSON.stringify(userWithAccessToken));
       }
 
-      void this._router.navigate(['/hero-selection']);
+      void this._router.navigate(['home']);
     }
   }
 

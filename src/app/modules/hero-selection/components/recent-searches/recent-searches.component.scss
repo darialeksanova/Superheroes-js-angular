@@ -1,0 +1,25 @@
+.recent-searches {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 600px;
+  height: 30px;
+  margin-bottom: 15px;
+  padding: 5px 0;
+}
+
+.recent-searches__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 70px;
+  height: 30px;
+  padding: 0 5px;
+  margin: 0 7px;
+  border-radius: 6px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--color-secondary-bg);
+}
