@@ -16,7 +16,13 @@ export class SearchFieldComponent {
   public searchInput: FormControl = new FormControl('', [Validators.required, Validators.pattern(/[a-zA-Z]/)]);
 
   public searchHero(): void {
-    this.searchClick.emit(this.searchInput.value);
+    const searchInputValueTrimmed: string = this.searchInput.value.trim();
+
+    if (!searchInputValueTrimmed.length) {
+      return;
+    }
+
+    this.searchClick.emit(searchInputValueTrimmed);
     this.searchInput.setValue('');
   }
 
