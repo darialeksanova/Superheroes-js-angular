@@ -36,7 +36,7 @@
         </p>
       </div>
 
-      <input class="form-control" type="text" placeholder="Email" formControlName="email">
+      <input class="form-control" type="email" placeholder="Email" formControlName="email">
       <div
         *ngIf="emailControl.invalid && emailControl.touched"
         class="validations"
@@ -77,7 +77,7 @@
         </p>
       </div>
 
-      <input class="form-control" type="text" placeholder="Password" formControlName="password">
+      <input class="form-control" type="password" placeholder="Password" formControlName="password">
       <div
         *ngIf="passwordControl.invalid && passwordControl.touched"
         class="validations"
@@ -90,35 +90,35 @@
         </p>
 
         <p
-          *ngIf="passwordControl.errors?.['minlength']"
+          *ngIf="passwordControl.value.length > 0 && passwordControl.errors?.['minlength']"
           class="validation-message"
         >
           Password must contain at least {{passwordControl.errors?.['minlength'].requiredLength}} symbols.
       </p>
 
       <p
-        *ngIf="passwordControl.errors?.['noCapitalLettersIncluded']"
+        *ngIf="passwordControl.value.length > 0 && passwordControl.errors?.['noCapitalLettersIncluded']"
         class="validation-message"
       >
         Password must include at least 1 capital letter.
       </p>
 
       <p
-        *ngIf="passwordControl.errors?.['noNumbersIncluded']"
+        *ngIf="passwordControl.value.length > 0 && passwordControl.errors?.['noNumbersIncluded']"
         class="validation-message"
       >
         Password must include at least 1 number.
       </p>
 
       <p
-        *ngIf="passwordControl.errors?.['noSpecialSymbolsIncluded']"
+        *ngIf="passwordControl.value.length > 0 && passwordControl.errors?.['noSpecialSymbolsIncluded']"
         class="validation-message"
       >
         Password must include at least 1 special symbol: $, %, ., &, !, -.
       </p>
 
       <p
-        *ngIf="passwordControl.errors?.['containsPartsOfNameOrEmail']"
+        *ngIf="passwordControl.value.length > 0 && passwordControl.errors?.['containsPartsOfNameOrEmail']"
         class="validation-message"
       >
         Password must not contain parts of username or email.

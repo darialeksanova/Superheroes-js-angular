@@ -2,7 +2,7 @@
   <h2 class="form__title">Sign in</h2>
   <div class="form__controls">
 
-    <input class="form-control" type="text" placeholder="Email" formControlName="email">
+    <input class="form-control" type="email" placeholder="Email" formControlName="email">
     <div
         *ngIf="emailControl.invalid && emailControl.touched"
         class="validations"
@@ -15,7 +15,7 @@
         </p>
       </div>
 
-    <input class="form-control" type="text" placeholder="Password" formControlName="password">
+    <input class="form-control" type="password" placeholder="Password" formControlName="password">
     <div
         *ngIf="passwordControl.invalid && passwordControl.touched"
         class="validations"
