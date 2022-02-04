@@ -22,6 +22,7 @@ export class UserInfoPageComponent implements OnInit {
     }
 
     const selectedHeroesAsArray: Hero[] = JSON.parse(selectedHeroesAsString);
+    
     this.selectedHeroes = [...this.selectedHeroes, ...selectedHeroesAsArray];
   }
 }
