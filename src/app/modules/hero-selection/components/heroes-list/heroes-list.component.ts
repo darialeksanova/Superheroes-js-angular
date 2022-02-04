@@ -7,6 +7,9 @@ import { Hero } from 'src/app/types/hero';
   styleUrls: ['./heroes-list.component.scss']
 })
 export class HeroesListComponent {
-
   @Input() public heroes: Hero[] = [];
+
+  public trackByHeroId(_: number, hero: Hero): string {
+    return hero.id;
+  }
 }

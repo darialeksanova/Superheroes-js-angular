@@ -10,7 +10,7 @@ import { UserData } from "src/app/types/userData";
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent {
-  public form: FormGroup = new FormGroup({
+  public readonly form: FormGroup = new FormGroup({
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   });
@@ -36,13 +36,13 @@ export class SignInComponent {
     const usersLoginDataAsString: string | null = localStorage.getItem('usersLoginData');
 
     if (!usersLoginDataAsString) {
-      this.addInvalidDataErrorToFormValidationErrors();
+      this._addInvalidDataErrorToFormValidationErrors();
     } else {
       const usersLoginDataAsArray: UserData[] = JSON.parse(usersLoginDataAsString);
-      const user: UserData | undefined = this.findUserByEmailAndPassword(usersLoginDataAsArray);
+      const user: UserData | undefined = this._findUserByEmailAndPassword(usersLoginDataAsArray);
 
       if (!user) {
-        this.addInvalidDataErrorToFormValidationErrors();
+        this._addInvalidDataErrorToFormValidationErrors();
         return;
       }
 
@@ -56,13 +56,13 @@ export class SignInComponent {
     }
   }
 
-  private addInvalidDataErrorToFormValidationErrors(): void {
+  private _addInvalidDataErrorToFormValidationErrors(): void {
     const formValidationErrors: ValidationErrors | null = this.form.errors;
 
     this.form.setErrors({ ...formValidationErrors, invalidData: true });
   }
 
-  private findUserByEmailAndPassword(arrayOfUsers: UserData[]): UserData | undefined {
+  private _findUserByEmailAndPassword(arrayOfUsers: UserData[]): UserData | undefined {
     return arrayOfUsers.find(userDataObj =>
       userDataObj.email === this.form.value.email.trim()
       &&

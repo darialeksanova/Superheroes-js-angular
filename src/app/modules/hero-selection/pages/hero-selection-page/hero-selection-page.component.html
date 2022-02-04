@@ -2,12 +2,10 @@
   <div class="background">
     <img src="/assets/img/hero-selection-page-bg.jpeg">
   </div>
-
   <div class="container">
-
     <app-search-field 
+      [searchValue]="searchValue"
       (searchClick)="searchHero($event)"
-      [searchValueBasedOnRecentSearches]="searchValueBasedOnRecentSearches"
     >
     </app-search-field>
 

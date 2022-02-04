@@ -56,7 +56,7 @@
         </p>
 
         <p
-          *ngIf="emailControl.errors?.['restrictedDomain'] && emailControl.value.length > 0"
+          *ngIf="emailControl.value.length && emailControl.errors?.['restrictedDomain']"
           class="validation-message"
         >
           Unvalid domain name.
@@ -90,35 +90,35 @@
         </p>
 
         <p
-          *ngIf="passwordControl.value.length > 0 && passwordControl.errors?.['minlength']"
+          *ngIf="checkPasswordValidityByLengthAndPassedError('minlength')"
           class="validation-message"
         >
           Password must contain at least {{passwordControl.errors?.['minlength'].requiredLength}} symbols.
       </p>
 
       <p
-        *ngIf="passwordControl.value.length > 0 && passwordControl.errors?.['noCapitalLettersIncluded']"
+        *ngIf="checkPasswordValidityByLengthAndPassedError('noCapitalLettersIncluded')"
         class="validation-message"
       >
         Password must include at least 1 capital letter.
       </p>
 
       <p
-        *ngIf="passwordControl.value.length > 0 && passwordControl.errors?.['noNumbersIncluded']"
+        *ngIf="checkPasswordValidityByLengthAndPassedError('noNumbersIncluded')"
         class="validation-message"
       >
         Password must include at least 1 number.
       </p>
 
       <p
-        *ngIf="passwordControl.value.length > 0 && passwordControl.errors?.['noSpecialSymbolsIncluded']"
+        *ngIf="checkPasswordValidityByLengthAndPassedError('noSpecialSymbolsIncluded')"
         class="validation-message"
       >
         Password must include at least 1 special symbol: $, %, ., &, !, -.
       </p>
 
       <p
-        *ngIf="passwordControl.value.length > 0 && passwordControl.errors?.['containsPartsOfNameOrEmail']"
+        *ngIf="checkPasswordValidityByLengthAndPassedError('containsPartsOfNameOrEmail')"
         class="validation-message"
       >
         Password must not contain parts of username or email.

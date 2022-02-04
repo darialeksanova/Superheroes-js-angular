@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { API_BASE_URL } from "../constants/api-base-url";
-import { Hero } from "../types/hero";
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
+import { HeroByNameResponse, HeroByNameSuccessResponse } from "../types/heroByNameResponse";
 
 @Injectable({ providedIn: 'root' })
 export class HeroHttpService {
@@ -11,12 +11,15 @@ export class HeroHttpService {
     private _http: HttpClient
   ) {}
 
-  public getHeroesByName(name: string): Observable<HeroByNameResponse> {
-    return this._http.get<HeroByNameResponse>(`${API_BASE_URL}/search/${name}`);
-  }
-}
+  public getHeroesByName(name: string): Observable<HeroByNameSuccessResponse> {
+    return this._http.get<HeroByNameResponse>(`${API_BASE_URL}/search/${name}`)
+      .pipe(
+        map((response: HeroByNameResponse) => {
+          if (response.response === 'error') {
+            throw response;
+          } 
 
-type HeroByNameResponse = {
-  response: string;
-  results: Array<Hero>;
+          return response;
+        }));
+  }
 }

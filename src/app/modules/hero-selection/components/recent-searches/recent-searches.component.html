@@ -1,7 +1,7 @@
 <ul class="recent-searches">
   <li 
+    *ngFor="let item of recentSearches; trackBy: trackBySearchedString"
     class="recent-searches__item" 
-    *ngFor="let item of recentSearches"
     (click)="handleRecentSearchesItemClick(item)"
   >
     {{ item }}

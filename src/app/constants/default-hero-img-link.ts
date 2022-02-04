@@ -1,0 +1,1 @@
+export const DEFAULT_HERO_IMAGE_LINK: string = '/assets/img/superhero-default-img.jpeg';

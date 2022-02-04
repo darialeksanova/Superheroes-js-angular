@@ -12,7 +12,7 @@ import { CustomUsernameValidators } from "../../../../validators/custom-username
   styleUrls: ['./create-new-account.component.scss']
 })
 export class CreateNewAccountComponent implements OnInit {
-  public form: FormGroup = new FormGroup({
+  public readonly form: FormGroup = new FormGroup({
     username: new FormControl('', [
       Validators.required, 
       Validators.minLength(8),
@@ -65,7 +65,7 @@ export class CreateNewAccountComponent implements OnInit {
     const usersLoginDataAsString: string | null = localStorage.getItem('usersLoginData');
 
     if (!usersLoginDataAsString) {
-      localStorage.setItem('usersLoginData', JSON.stringify([this.createUserDataObjectFromFormValue()]));
+      localStorage.setItem('usersLoginData', JSON.stringify([this._createUserDataObjectFromFormValue()]));
     } else {
       const usersLoginDataAsArray: UserData[] = JSON.parse(usersLoginDataAsString);
       const isEmailUsed: boolean = usersLoginDataAsArray.some(userDataObj => userDataObj.email === this.emailControl.value.trim());
@@ -75,17 +75,21 @@ export class CreateNewAccountComponent implements OnInit {
 
         this.emailControl.setErrors({...emailValidationErrors, emailIsNotUnique: true});
       } else {
-        localStorage.setItem('usersLoginData', JSON.stringify([...usersLoginDataAsArray, this.createUserDataObjectFromFormValue()]));
+        localStorage.setItem('usersLoginData', JSON.stringify([...usersLoginDataAsArray, this._createUserDataObjectFromFormValue()]));
       }
     }
     this.navigateToSignInForm();
   }
 
-  private createUserDataObjectFromFormValue(): UserData {
+  private _createUserDataObjectFromFormValue(): UserData {
     return {
       username: this.form.value.username.trim(),
       email: this.form.value.email.trim(),
       password: this.form.value.password.trim()
     }
+  }
+
+  public checkPasswordValidityByLengthAndPassedError(error: string) {
+    return this.passwordControl.value.length && this.passwordControl.errors?.[error];
   }
 }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { catchError, of, tap } from 'rxjs';
+import { HeroByNameResponse, HeroByNameSuccessResponse } from 'src/app/types/heroByNameResponse';
 import { HeroHttpService } from '../../../../services/hero-http.service';
 import { Hero } from '../../../../types/hero';
 
@@ -8,32 +10,32 @@ import { Hero } from '../../../../types/hero';
   styleUrls: ['./hero-selection-page.component.scss']
 })
 export class HeroSelectionPageComponent {
-
-  public searchValueBasedOnRecentSearches: string = '';
+  public searchValue: string = '';
   public heroes: Hero[] = [];
   public recentSearches: string[] = [];
   public errorOnHeroesSearch: boolean = false;
 
   constructor(
     private _heroService: HeroHttpService
-  ) { }
+  ) {}
 
   public searchHero(searchValue: string): void {
-    this.addSearchValueToRecentSearches(searchValue);
-    this._heroService.getHeroesByName(searchValue).subscribe({
-      next: response => {
-
-        if (response.response === 'error') {
+    this._addSearchValueToRecentSearches(searchValue);
+    this._heroService.getHeroesByName(searchValue)
+      .pipe(
+        tap((response: HeroByNameSuccessResponse) => this.heroes = response.results),
+        catchError((error: unknown) => {
           this.errorOnHeroesSearch = true;
-        } else if (response.response === 'success') {
-          this.heroes = response.results;
-        }
-      }
-    });
+          return of(error);
+        }),
+      )
+      .subscribe();
   }
 
-  private addSearchValueToRecentSearches(searchValue: string): void {
-    if (this.recentSearches.includes(searchValue)) {
+  private _addSearchValueToRecentSearches(searchValue: string): void {
+    const isSearchValueInRecentSearches: boolean = this.recentSearches.includes(searchValue);
+
+    if (isSearchValueInRecentSearches) {
       return;
     }
 
@@ -41,6 +43,6 @@ export class HeroSelectionPageComponent {
   }
 
   public setSearchValueBasedOnRecentSearches(searchValue: string): void {
-    this.searchValueBasedOnRecentSearches = searchValue;
+    this.searchValue = searchValue;
   }
 }

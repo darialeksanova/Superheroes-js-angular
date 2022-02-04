@@ -8,11 +8,11 @@ const ALPHABET_AS_STRING: string = "abcdefghijklmnopqrstuvwxyz";
   styleUrls: ['./alphabet-selection.component.scss']
 })
 export class AlphabetSelectionComponent {
-  
-  public alphabetAsArray: string[] = ALPHABET_AS_STRING.split('');
   @Output() charOptionClick: EventEmitter<string> = new EventEmitter<string>();
+  
+  public readonly alphabetAsArray: string[] = ALPHABET_AS_STRING.split('');
 
-  public handleSelectedCharChange(char: string): void {
+  public changeSelectedChar(char: string): void {
     this.charOptionClick.emit(char);
   }
 }

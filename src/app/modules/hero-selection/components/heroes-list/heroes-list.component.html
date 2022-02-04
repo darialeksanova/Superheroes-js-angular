@@ -1,6 +1,6 @@
 <div class="wrapper">
   <ul class="heroes-list">
-    <li *ngFor="let hero of heroes" class="heroes-list__item">
+    <li *ngFor="let hero of heroes; trackBy: trackByHeroId" class="heroes-list__item">
       <app-hero-card [hero]="hero"></app-hero-card>
     </li>
   </ul>

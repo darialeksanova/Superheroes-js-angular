@@ -7,9 +7,8 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./search-field.component.scss']
 })
 export class SearchFieldComponent {
-
-  @Input() public set searchValueBasedOnRecentSearches(value: string) {
-    this.searchInput.setValue(value);
+  @Input() set searchValue(searchValue: string) {
+    this.setSearchValue(searchValue);
   };
   @Output() public searchClick: EventEmitter<string> = new EventEmitter<string>();
 
@@ -26,8 +25,8 @@ export class SearchFieldComponent {
     this.searchInput.setValue('');
   }
 
-  public setSearchValueBasedOnSelectedChar(searchValue: string): void {
-    this.searchInput.setValue(searchValue.toUpperCase());
+  public setSearchValue(searchValue: string): void {
+    this.searchInput.setValue(searchValue);
   }
 }
  
