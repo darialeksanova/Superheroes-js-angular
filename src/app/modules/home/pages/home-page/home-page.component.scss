@@ -52,6 +52,11 @@
   flex-shrink: 0;
   margin-right: 15px;
   cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+    color: var(--color-contrast);
+  }
 }
 
 .navigation__user-avatar {
