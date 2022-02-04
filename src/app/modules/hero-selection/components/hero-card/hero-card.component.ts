@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { DEFAULT_HERO } from 'src/app/constants/default-hero';
 import { DEFAULT_HERO_IMAGE_LINK } from 'src/app/constants/default-hero-img-link';
 import { Hero } from 'src/app/types/hero';
@@ -6,7 +6,8 @@ import { Hero } from 'src/app/types/hero';
 @Component({
   selector: 'app-hero-card',
   templateUrl: './hero-card.component.html',
-  styleUrls: ['./hero-card.component.scss']
+  styleUrls: ['./hero-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroCardComponent implements OnInit {
   @Input() public hero: Hero = DEFAULT_HERO;
