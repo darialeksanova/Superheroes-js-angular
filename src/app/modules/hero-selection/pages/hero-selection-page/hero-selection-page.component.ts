@@ -18,7 +18,7 @@ export class HeroSelectionPageComponent {
 
   constructor(
     private _heroService: HeroHttpService,
-    private cdRef: ChangeDetectorRef,
+    private _cdRef: ChangeDetectorRef,
   ) {}
 
   public searchHero(searchValue: string): void {
@@ -27,11 +27,11 @@ export class HeroSelectionPageComponent {
       .pipe(
         tap((response: HeroByNameSuccessResponse) => {
           this.heroes = response.results;
-          this.cdRef.markForCheck();
+          this._cdRef.markForCheck();
         }),
         catchError((error: unknown) => {
           this.errorOnHeroesSearch = true;
-          this.cdRef.markForCheck();
+          this._cdRef.markForCheck();
           return of(error);
         }),
       )
