@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-search-field',
   templateUrl: './search-field.component.html',
-  styleUrls: ['./search-field.component.scss']
+  styleUrls: ['./search-field.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchFieldComponent {
   @Input() set searchValue(searchValue: string) {
@@ -22,11 +23,11 @@ export class SearchFieldComponent {
     }
 
     this.searchClick.emit(searchInputValueTrimmed);
-    this.searchInput.setValue('');
   }
 
   public setSearchValue(searchValue: string): void {
     this.searchInput.setValue(searchValue);
+    this.searchHero();
   }
 }
  

@@ -1,15 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Hero } from 'src/app/types/hero';
 
 @Component({
   selector: 'app-heroes-list',
   templateUrl: './heroes-list.component.html',
-  styleUrls: ['./heroes-list.component.scss']
+  styleUrls: ['./heroes-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroesListComponent {
   @Input() public heroes: Hero[] = [];
 
-  public trackByHeroId(_: number, hero: Hero): string {
+  public trackByHeroId(idx: number, hero: Hero): string {
     return hero.id;
   }
 }

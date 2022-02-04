@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-recent-searches',
   templateUrl: './recent-searches.component.html',
-  styleUrls: ['./recent-searches.component.scss']
+  styleUrls: ['./recent-searches.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RecentSearchesComponent {
   @Input() public recentSearches: string[] = [];
@@ -13,7 +14,7 @@ export class RecentSearchesComponent {
     this.recentSearchesItemClick.emit(searchValue);
   }
 
-  public trackBySearchedString(_: number, searchedString: string): string {
+  public trackBySearchedString(idx: number, searchedString: string): string {
     return searchedString;
   }
 }

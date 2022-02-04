@@ -27,6 +27,10 @@
   font-size: 18px;
   color: var(--color-neutral);
   background-color: transparent;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .search-bar__search-icon {

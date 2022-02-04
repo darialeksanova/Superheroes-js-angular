@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { UserData } from "src/app/types/userData";
@@ -9,7 +9,8 @@ import { CustomUsernameValidators } from "../../../../validators/custom-username
 @Component ({
   selector: 'app-create-new-account',
   templateUrl: './create-new-account.component.html',
-  styleUrls: ['./create-new-account.component.scss']
+  styleUrls: ['./create-new-account.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateNewAccountComponent implements OnInit {
   public readonly form: FormGroup = new FormGroup({
