@@ -14,11 +14,10 @@
     <li class="hero__stats_point">Combat: {{ hero.powerstats.combat }}</li>
   </ul>
 
-  <button 
+  <button
     [ngClass]="{'select-hero-button': true, 'disabled': isHeroSelected}" 
     (click)="selectHero()" 
-    #selectHeroButton
   >
-    {{ isHeroSelected? 'Selected' : 'Select' }}
+    {{ isHeroSelected ? 'Selected' : 'Select' }}
   </button>
 </div>

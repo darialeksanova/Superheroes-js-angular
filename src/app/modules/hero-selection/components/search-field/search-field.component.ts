@@ -22,11 +22,11 @@ export class SearchFieldComponent {
     }
 
     this.searchClick.emit(searchInputValueTrimmed);
-    this.searchInput.setValue('');
   }
 
   public setSearchValue(searchValue: string): void {
     this.searchInput.setValue(searchValue);
+    this.searchHero();
   }
 }
  

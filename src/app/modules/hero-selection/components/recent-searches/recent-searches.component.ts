@@ -13,7 +13,7 @@ export class RecentSearchesComponent {
     this.recentSearchesItemClick.emit(searchValue);
   }
 
-  public trackBySearchedString(_: number, searchedString: string): string {
+  public trackBySearchedString(idx: number, searchedString: string): string {
     return searchedString;
   }
 }

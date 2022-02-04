@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DEFAULT_HERO } from 'src/app/constants/default-hero';
 import { DEFAULT_HERO_IMAGE_LINK } from 'src/app/constants/default-hero-img-link';
 import { Hero } from 'src/app/types/hero';
@@ -9,7 +9,6 @@ import { Hero } from 'src/app/types/hero';
   styleUrls: ['./hero-card.component.scss']
 })
 export class HeroCardComponent implements OnInit {
-  @ViewChild('selectHeroButton') selectHeroButtonRef!: ElementRef;
   @Input() public hero: Hero = DEFAULT_HERO;
 
   public isHeroSelected: boolean = false;

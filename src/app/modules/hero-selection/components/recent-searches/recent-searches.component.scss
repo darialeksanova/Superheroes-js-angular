@@ -23,4 +23,9 @@
   color: var(--color-neutral);
   background-color: var(--color-secondary-bg);
   cursor: pointer;
+  transition-duration: 0.5s;
+
+  &:hover {
+    background-color: var(--color-contrast);
+  }
 }
