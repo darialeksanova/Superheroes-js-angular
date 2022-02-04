@@ -9,7 +9,7 @@ import { Hero } from 'src/app/types/hero';
 export class HeroesListComponent {
   @Input() public heroes: Hero[] = [];
 
-  public trackByHeroId(_: number, hero: Hero): string {
+  public trackByHeroId(idx: number, hero: Hero): string {
     return hero.id;
   }
 }
