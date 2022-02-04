@@ -14,7 +14,7 @@ export class HeroesListComponent {
 
   constructor(private _router: Router) {}
 
-  public trackByHeroId(idx: number, hero: Hero): string {
+  public trackByHeroId(_: number, hero: Hero): string {
     return hero.id;
   }
 

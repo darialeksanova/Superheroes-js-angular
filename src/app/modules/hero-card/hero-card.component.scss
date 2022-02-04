@@ -72,12 +72,6 @@
   display: block;
 }
 
-.disabled {
-  pointer-events: none;
-  background-color: var(--color-accent-pale);
-  opacity: 0.5;
-}
-
 .visible {
   display: block;
 }

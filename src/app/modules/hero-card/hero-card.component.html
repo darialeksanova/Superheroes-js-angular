@@ -14,13 +14,6 @@
     <li class="hero__stats_point">Combat: {{ hero.powerstats.combat }}</li>
   </ul>
 
-  <!-- <button
-    [ngClass]="{'select-hero-button': true, 'disabled': isHeroSelected}" 
-    (click)="selectHero()" 
-  >
-    {{ isHeroSelected ? 'Selected' : 'Select' }}
-  </button> -->
-
   <div class="hero__actions">
     <button 
       [ngClass]="{'hero__actions_select': true, 'visible': !isHeroSelected}" 
@@ -30,7 +23,7 @@
     </button>
   
     <button 
-    [ngClass]="{'hero__actions_remove': true, 'visible': isHeroSelected}" 
+      [ngClass]="{'hero__actions_remove': true, 'visible': isHeroSelected}" 
       (click)="removeHero()"
     >
       Remove
