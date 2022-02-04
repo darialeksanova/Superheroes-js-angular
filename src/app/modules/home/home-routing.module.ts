@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { HeroSelectionPageComponent } from "../hero-selection/pages/hero-selection-page/hero-selection-page.component";
+import { UserInfoPageComponent } from "../user-info/pages/user-info-page/user-info-page.component";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 
 const routes: Routes = [
@@ -13,6 +14,9 @@ const routes: Routes = [
     path: '', component: HomePageComponent, children: [
       {
         path: 'hero-selection', component: HeroSelectionPageComponent
+      },
+      {
+        path: 'user-info', component: UserInfoPageComponent
       }
     ]
   }

@@ -7,7 +7,9 @@ import { HeroesListComponent } from "../hero-selection/components/heroes-list/he
 import { RecentSearchesComponent } from "../hero-selection/components/recent-searches/recent-searches.component";
 import { SearchFieldComponent } from "../hero-selection/components/search-field/search-field.component";
 import { HeroSelectionPageComponent } from "../hero-selection/pages/hero-selection-page/hero-selection-page.component";
+import { UserInfoPageComponent } from "../user-info/pages/user-info-page/user-info-page.component";
 import { HomePageRoutingModule } from "./home-routing.module";
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -16,12 +18,14 @@ import { HomePageRoutingModule } from "./home-routing.module";
     HeroesListComponent,
     HeroCardComponent,
     RecentSearchesComponent,
-    HeroSelectionPageComponent
+    HeroSelectionPageComponent,
+    UserInfoPageComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     HomePageRoutingModule,
+    MatTabsModule
   ]
 })
 export class HomePageModule {}
