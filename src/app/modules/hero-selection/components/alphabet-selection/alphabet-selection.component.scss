@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 40px;
+  border-radius: 6px;
+  border: 3px solid var(--color-neutral);
+  margin-right: 15px;
+}
+
+.selected-letter {
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  color: var(--color-neutral);
+  cursor: pointer;
+}

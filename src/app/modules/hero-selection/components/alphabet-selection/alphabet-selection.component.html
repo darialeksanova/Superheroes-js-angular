@@ -1,0 +1,11 @@
+<div class="wrapper">
+  <select class="selected-letter" (change)="changeSelectedChar(charSelect.value)" #charSelect>
+    <option disabled selected>#</option>
+    <option 
+      *ngFor="let char of alphabetAsArray" 
+      [value]="char.toUpperCase()"
+    >
+      {{ char.toUpperCase() }}
+    </option>
+  </select>
+</div>

@@ -1,0 +1,131 @@
+<form class="form" [formGroup]="form" (ngSubmit)="signUp()">
+  <h2 class="form__title">Create new account</h2>
+  <div class="form__controls">
+
+      <input class="form-control" type="text" placeholder="Username" formControlName="username">
+      <div
+        *ngIf="usernameControl.invalid && usernameControl.touched"
+        class="validations"
+      >
+        <p
+          *ngIf="usernameControl.errors?.['required']"
+          class="validation-message"
+        >
+          Username is required.
+        </p>
+
+        <p
+          *ngIf="usernameControl.errors?.['minlength']"
+          class="validation-message"
+        >
+          Username must contain at least {{usernameControl.errors?.['minlength'].requiredLength}} characters.
+        </p>
+
+        <p
+          *ngIf="usernameControl.errors?.['numberOfWords']"
+          class="validation-message"
+        >
+          Username must contain at least 2 words.
+        </p>
+
+        <p
+          *ngIf="usernameControl.errors?.['pattern']"
+          class="validation-message"
+        >
+          You cannnot use special symbols or numbers.
+        </p>
+      </div>
+
+      <input class="form-control" type="email" placeholder="Email" formControlName="email">
+      <div
+        *ngIf="emailControl.invalid && emailControl.touched"
+        class="validations"
+      >
+        <p
+          *ngIf="emailControl.errors?.['required']"
+          class="validation-message"
+        >
+          Email is required.
+        </p>
+
+        <p
+          *ngIf="emailControl.errors?.['emailIsNotUnique']"
+          class="validation-message"
+        >
+          User with such email already exists.
+        </p>
+
+        <p
+          *ngIf="emailControl.value.length && emailControl.errors?.['restrictedDomain']"
+          class="validation-message"
+        >
+          Unvalid domain name.
+        </p>
+
+        <p
+          *ngIf="emailControl.errors?.['numberOfSymbolsAfterAtSign']"
+          class="validation-message"
+        >
+          You cannot use more than 5 symbols after "@" sign.
+        </p>
+
+        <p
+          *ngIf="emailControl.errors?.['numberOfDotsBeforeAtSign']"
+          class="validation-message"
+        >
+          You cannot use more than 3 dots before "@" sign.
+        </p>
+      </div>
+
+      <input class="form-control" type="password" placeholder="Password" formControlName="password">
+      <div
+        *ngIf="passwordControl.invalid && passwordControl.touched"
+        class="validations"
+      >
+        <p
+          *ngIf="passwordControl.errors?.['required']"
+          class="validation-message"
+        >
+          Password is required.
+        </p>
+
+        <p
+          *ngIf="checkPasswordValidityByLengthAndPassedError('minlength')"
+          class="validation-message"
+        >
+          Password must contain at least {{passwordControl.errors?.['minlength'].requiredLength}} symbols.
+      </p>
+
+      <p
+        *ngIf="checkPasswordValidityByLengthAndPassedError('noCapitalLettersIncluded')"
+        class="validation-message"
+      >
+        Password must include at least 1 capital letter.
+      </p>
+
+      <p
+        *ngIf="checkPasswordValidityByLengthAndPassedError('noNumbersIncluded')"
+        class="validation-message"
+      >
+        Password must include at least 1 number.
+      </p>
+
+      <p
+        *ngIf="checkPasswordValidityByLengthAndPassedError('noSpecialSymbolsIncluded')"
+        class="validation-message"
+      >
+        Password must include at least 1 special symbol: $, %, ., &, !, -.
+      </p>
+
+      <p
+        *ngIf="checkPasswordValidityByLengthAndPassedError('containsPartsOfNameOrEmail')"
+        class="validation-message"
+      >
+        Password must not contain parts of username or email.
+      </p>
+    </div>
+  </div>
+
+  <button class="form__sign-in-button" (click)="navigateToSignInForm()">I already have an account</button>
+  <button class="form__submit-button" type="submit" [disabled]="form.invalid">Sign up</button>
+</form>
