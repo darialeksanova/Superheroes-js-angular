@@ -1,0 +1,10 @@
+<div class="wrapper">
+  <ul class="heroes-list">
+    <li *ngFor="let hero of heroes; let isLast = last; trackBy: trackByHeroId" class="heroes-list__item">
+      <app-hero-card [hero]="hero" (heroRemoved)="updateHeroesListAfterHeroRemove($event)"></app-hero-card>
+      <button *ngIf="showAddHeroButton && isLast" class="add-hero-button" (click)="navigateToHeroSelectionPage()">
+        <img src="assets/icons/plus-solid.svg">
+      </button>
+    </li>
+  </ul>
+</div>

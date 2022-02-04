@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Hero } from 'src/app/types/hero';
 
 @Component({
   selector: 'app-user-info-page',
   templateUrl: './user-info-page.component.html',
-  styleUrls: ['./user-info-page.component.scss']
+  styleUrls: ['./user-info-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserInfoPageComponent implements OnInit {
-
-  constructor() { }
+  public selectedHeroes: Hero[] = [];
 
   ngOnInit(): void {
+    this._getSelectedHeroesFromStorage();
   }
 
+  private _getSelectedHeroesFromStorage(): void {
+    const selectedHeroesAsString: string | null = localStorage.getItem('selectedHeroes');
+    
+    if (!selectedHeroesAsString) {
+      return;
+    }
+
+    const selectedHeroesAsArray: Hero[] = JSON.parse(selectedHeroesAsString);
+    this.selectedHeroes = [...this.selectedHeroes, ...selectedHeroesAsArray];
+  }
 }
