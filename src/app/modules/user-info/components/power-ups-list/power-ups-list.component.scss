@@ -1,0 +1,9 @@
+.power-ups-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 0;
+  height: 670px;
+  padding: 15px 0;
+  overflow-y: auto;
+}

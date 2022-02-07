@@ -16,7 +16,7 @@ const routes: Routes = [
         path: 'hero-selection', component: HeroSelectionPageComponent
       },
       {
-        path: 'user-info', component: UserInfoPageComponent
+        path: 'user-info', loadChildren: () => import('../user-info/user-info.module').then(m => m.UserInfoModule)
       }
     ]
   }
