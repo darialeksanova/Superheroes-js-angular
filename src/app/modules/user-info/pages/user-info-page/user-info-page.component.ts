@@ -10,7 +10,7 @@ import { Hero } from 'src/app/types/hero';
 export class UserInfoPageComponent implements OnInit {
   public selectedHeroes: Hero[] = [];
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this._getSelectedHeroesFromStorage();
   }
 
