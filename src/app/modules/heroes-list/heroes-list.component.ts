@@ -10,7 +10,8 @@ import { Hero } from 'src/app/types/hero';
 })
 export class HeroesListComponent {
   @Input() public heroes: Hero[] = [];
-  @Input() public showAddHeroButton?: boolean = false;
+  @Input() public showAddHeroButton: boolean = false;
+  @Input() public dynamicList: boolean = true;
 
   constructor(private _router: Router) {}
 

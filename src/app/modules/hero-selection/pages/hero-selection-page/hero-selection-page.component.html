@@ -19,6 +19,7 @@
     <app-heroes-list 
       *ngIf="heroes.length > 0 || !errorOnHeroesSearch; else searchErrorMessage" 
       [heroes]="heroes"
+      [dynamicList]="false"
     >
     </app-heroes-list>
 

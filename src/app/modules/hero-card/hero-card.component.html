@@ -16,14 +16,16 @@
 
   <div class="hero__actions">
     <button 
-      [ngClass]="{'hero__actions_select': true, 'visible': !isHeroSelected}" 
+      *ngIf="!isHeroSelected"
+      class="hero__actions_select"
       (click)="selectHero()"
     >
       Select
     </button>
   
     <button 
-      [ngClass]="{'hero__actions_remove': true, 'visible': isHeroSelected}" 
+      *ngIf="isHeroSelected"
+      class="hero__actions_remove"
       (click)="removeHero()"
     >
       Remove
