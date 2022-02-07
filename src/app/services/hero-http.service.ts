@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { API_BASE_URL } from "../constants/api-base-url";
 import { map, Observable } from "rxjs";
 import { HeroByNameResponse, HeroByNameSuccessResponse } from "../types/hero-by-name-response";
+import { HeroFull } from "../types/heroFull";
 
 @Injectable({ providedIn: 'root' })
 export class HeroHttpService {
@@ -21,5 +22,9 @@ export class HeroHttpService {
 
           return response;
         }));
+  }
+
+  public getFullHeroInfoById(id: string): Observable<HeroFull> {
+    return this._http.get<HeroFull>(`${API_BASE_URL}/${id}`);
   }
 }

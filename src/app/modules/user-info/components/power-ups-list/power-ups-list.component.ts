@@ -10,7 +10,7 @@ import { PowerUp } from 'src/app/types/power-up';
 export class PowerUpsListComponent implements OnInit {
   public powerUps: PowerUp[] = POWER_UPS_LIST;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this._sortPowerUps();
   }
 

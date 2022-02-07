@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Hero } from 'src/app/types/hero';
+import { HeroPreview } from 'src/app/types/heroPreview';
 
 @Component({
   selector: 'app-user-info-page',
@@ -8,7 +8,7 @@ import { Hero } from 'src/app/types/hero';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserInfoPageComponent implements OnInit {
-  public selectedHeroes: Hero[] = [];
+  public selectedHeroes: HeroPreview[] = [];
 
   public ngOnInit(): void {
     this._getSelectedHeroesFromStorage();
@@ -21,7 +21,7 @@ export class UserInfoPageComponent implements OnInit {
       return;
     }
 
-    const selectedHeroesAsArray: Hero[] = JSON.parse(selectedHeroesAsString);
+    const selectedHeroesAsArray: HeroPreview[] = JSON.parse(selectedHeroesAsString);
     
     this.selectedHeroes = [...this.selectedHeroes, ...selectedHeroesAsArray];
   }

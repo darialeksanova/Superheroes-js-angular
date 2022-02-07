@@ -21,8 +21,7 @@ import { UserInfoModule } from './modules/user-info/user-info.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    HttpClientModule,
-    UserInfoModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

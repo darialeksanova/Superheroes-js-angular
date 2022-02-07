@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/
 import { catchError, of, tap } from 'rxjs';
 import { HeroByNameSuccessResponse } from 'src/app/types/hero-by-name-response';
 import { HeroHttpService } from '../../../../services/hero-http.service';
-import { Hero } from '../../../../types/hero';
+import { HeroPreview } from '../../../../types/heroPreview';
 
 @Component({
   selector: 'app-hero-selection-page',
@@ -12,7 +12,7 @@ import { Hero } from '../../../../types/hero';
 })
 export class HeroSelectionPageComponent {
   public searchValue: string = '';
-  public heroes: Hero[] = [];
+  public heroes: HeroPreview[] = [];
   public recentSearches: string[] = [];
   public errorOnHeroesSearch: boolean = false;
 

@@ -1,0 +1,95 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 70px;
+}
+
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -44%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 850px;
+  height: 650px;
+  background-color: var(--color-primary-bg);
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.hero-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.hero-badge__img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 350px;
+  flex-grow: 1;
+
+  img {
+    width: 280px;
+    height: 370px;
+    border-radius: 10px;
+  }
+}
+
+.hero-badge__name {
+  height: 50px;
+  padding-top: 50px;
+  flex-shrink: 0;
+}
+
+.hero-info {
+  width: 100%;
+  padding-left: 30px;
+}
+
+.hero-info__powerstats,
+.hero-info__biography,
+.hero-info__appearance,
+.hero-info__work,
+.hero-info__connections {
+  display: flex;
+  flex-direction: column;
+
+  h5 {
+    font-size: 18px;
+  }
+}
+
+.hero-info__powerstats_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+hr {
+  width: 100%;
+  border: 1px solid var(--color-accent-pale);
+  margin: 10px 0;
+}

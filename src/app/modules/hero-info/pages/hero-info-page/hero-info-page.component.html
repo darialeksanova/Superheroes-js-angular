@@ -1,0 +1,62 @@
+<div class="wrapper">
+  <div class="background">
+    <img src="/assets/img/hero-selection-page-bg.jpeg">
+  </div>
+
+  <div class="container">
+
+    <div class="hero-badge">
+      <h1 class="hero-badge__name">{{ hero.name }}</h1>
+      <div class="hero-badge__img">
+        <img [src]="hero.image.url" (error)="setDefaultHeroImage(hero)">
+      </div>
+
+    </div>
+  
+    <div class="hero-info">
+      <div class="hero-info__powerstats">
+        <h5>Powerstats</h5>
+        <div class="hero-info__powerstats_grid">
+          <span>Intelligence: {{ hero.powerstats.intelligence }}</span>
+          <span>Strength: {{ hero.powerstats.strength }}</span>
+          <span>Speed: {{ hero.powerstats.speed }}</span>
+          <span>Durability: {{ hero.powerstats.durability }}</span>
+          <span>Power: {{ hero.powerstats.power }}</span>
+          <span>Combat: {{ hero.powerstats.combat }}</span>
+        </div>
+      </div>
+      <hr>
+      <div class="hero-info__biography">
+        <h5>Biography</h5>
+        <span>Full name: {{ hero.biography['full-name'] }}</span>
+        <span>Alter egos: {{ hero.biography['alter-egos'] }}</span>
+        <span>Place of birth: {{ hero.biography['place-of-birth'] }}</span>
+        <span>First appearance: {{ hero.biography['first-appearance'] }}</span>
+        <span>Publisher: {{ hero.biography.publisher }}</span>
+        <span>Alignment: {{ hero.biography.alignment }}</span>
+      </div>
+      <hr>
+      <div class="hero-info__appearance">
+        <h5>Appearance</h5>
+        <span>Gender: {{ hero.appearance.gender }}</span>
+        <span>Race: {{ hero.appearance.race }}</span>
+        <span>Height: {{ hero.appearance.height[0] }} / {{ hero.appearance.height[1] }}</span>
+        <span>Weight: {{ hero.appearance.weight[0] }} / {{ hero.appearance.weight[1] }}</span>
+        <span>Eye color: {{ hero.appearance['eye-color'] }}</span>
+        <span>Hair color: {{ hero.appearance['hair-color'] }}</span>
+      </div>
+      <hr>
+      <div class="hero-info__work">
+        <h5>Work</h5>
+        <span>Occupation: {{ hero.work.occupation }}</span>
+        <span>Base: {{ hero.work.base }}</span>
+      </div>
+      <hr>
+      <div class="hero-info__connections">
+        <h5>Connections</h5>
+        <span>Group affiliation: {{ hero.connections['group-affiliation'] }}</span>
+        <span>Relatives: {{ hero.connections.relatives }}</span>
+      </div>
+  </div>
+  </div>
+</div>

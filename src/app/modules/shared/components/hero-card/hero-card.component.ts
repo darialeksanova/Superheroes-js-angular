@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DEFAULT_HERO } from 'src/app/constants/default-hero';
+import { Router } from '@angular/router';
+import { DEFAULT_HERO_PREVIEW } from 'src/app/constants/default-hero-preview';
 import { DEFAULT_HERO_IMAGE_LINK } from 'src/app/constants/default-hero-img-link';
-import { Hero } from 'src/app/types/hero';
+import { HeroPreview } from 'src/app/types/heroPreview';
 
 @Component({
   selector: 'app-hero-card',
@@ -10,10 +11,12 @@ import { Hero } from 'src/app/types/hero';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroCardComponent implements OnInit {
-  @Input() public hero: Hero = DEFAULT_HERO;
+  @Input() public hero: HeroPreview = DEFAULT_HERO_PREVIEW;
   @Output() public heroRemoved: EventEmitter<string> = new EventEmitter<string>();
 
   public isHeroSelected: boolean = false;
+
+  constructor(private _router: Router) {}
 
   public ngOnInit(): void {
     this._checkIfHeroIsSelected();
@@ -26,7 +29,7 @@ export class HeroCardComponent implements OnInit {
       return;
     }
 
-    const selectedHeroesAsArray: Hero[] = JSON.parse(selectedHeroesAsString);
+    const selectedHeroesAsArray: HeroPreview[] = JSON.parse(selectedHeroesAsString);
     const isHeroInSelectedHeroesArray: boolean = selectedHeroesAsArray.some(selectedHero => selectedHero.id === this.hero.id);
     
     if(isHeroInSelectedHeroesArray) {
@@ -34,7 +37,7 @@ export class HeroCardComponent implements OnInit {
     }
   }
 
-  public setDefaultHeroImage(hero: Hero): void {
+  public setDefaultHeroImage(hero: HeroPreview): void {
     hero.image.url = DEFAULT_HERO_IMAGE_LINK;
   }
 
@@ -47,7 +50,7 @@ export class HeroCardComponent implements OnInit {
       return;
     }
 
-    const selectedHeroesAsArray: Hero[] = JSON.parse(selectedHeroesAsString);
+    const selectedHeroesAsArray: HeroPreview[] = JSON.parse(selectedHeroesAsString);
 
     localStorage.setItem('selectedHeroes', JSON.stringify([...selectedHeroesAsArray, this.hero]));
     this.isHeroSelected = true;
@@ -60,11 +63,15 @@ export class HeroCardComponent implements OnInit {
       return;
     }
 
-    const selectedHeroesAsArray: Hero[] = JSON.parse(selectedHeroesAsString);
-    const selectedHeroesAsArrayUpdated: Hero[] = selectedHeroesAsArray.filter((selectedHero: Hero) => selectedHero.id !== this.hero.id);
+    const selectedHeroesAsArray: HeroPreview[] = JSON.parse(selectedHeroesAsString);
+    const selectedHeroesAsArrayUpdated: HeroPreview[] = selectedHeroesAsArray.filter((selectedHero: HeroPreview) => selectedHero.id !== this.hero.id);
 
     localStorage.setItem('selectedHeroes', JSON.stringify(selectedHeroesAsArrayUpdated));
     this.isHeroSelected = false;
     this.heroRemoved.emit(this.hero.id);
+  }
+
+  public navigateToHeroInfoPage(): void {
+    this._router.navigate(['home/hero-info', this.hero.id]);
   }
 }

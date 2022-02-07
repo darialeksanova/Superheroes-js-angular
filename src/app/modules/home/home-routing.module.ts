@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { HeroSelectionPageComponent } from "../hero-selection/pages/hero-selection-page/hero-selection-page.component";
-import { UserInfoPageComponent } from "../user-info/pages/user-info-page/user-info-page.component";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 
 const routes: Routes = [
@@ -17,6 +16,9 @@ const routes: Routes = [
       },
       {
         path: 'user-info', loadChildren: () => import('../user-info/user-info.module').then(m => m.UserInfoModule)
+      },
+      {
+        path: 'hero-info/:id', loadChildren: () => import('../hero-info/hero-info.module').then(m => m.HeroInfoModule)
       }
     ]
   }

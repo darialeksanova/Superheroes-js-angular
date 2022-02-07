@@ -1,4 +1,4 @@
-export interface Hero {
+export interface HeroPreview {
   id: string;
   image: {
     url: string;
