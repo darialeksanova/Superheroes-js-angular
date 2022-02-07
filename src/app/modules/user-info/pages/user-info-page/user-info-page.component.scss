@@ -31,3 +31,56 @@
   flex-direction: column;
   align-items: center;
 }
+
+.history-table {
+  padding: 15px;
+  border-radius: 10px;
+  border-spacing: 0;
+}
+
+.history-table__header_content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.history-table__header_sort-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  cursor: pointer;
+
+  img {
+    width: 80%;
+    height: 80%;
+  }
+}
+
+.history-table__header,
+.history-table__cell {
+  padding: 15px 40px;
+  text-align: center;
+  font-size: 18px;
+  color: var(--color-neutral);
+  border: 1px solid var(--color-secondary-bg);
+}
+
+.history-table__header {
+  background-color: var(--color-accent);
+}
+
+.history-table__cell {
+  background-color: var(--color-primary-bg);
+}
+
+.clickable {
+  cursor: pointer;
+  transition-duration: 0.4s;
+
+  &:hover {
+    background-color: var(--color-accent);
+  }
+}

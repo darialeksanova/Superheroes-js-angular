@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { UserData } from "../types/userData";
+import { UserData } from "../types/user-data";
 
 const MILLISECONDS_IN_HOUR: number = 60 * 60 * 1000;
 

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AccessTokenService } from "src/app/services/access-token.service";
-import { UserData } from "src/app/types/userData";
+import { UserData } from "src/app/types/user-data";
 
 @Component ({
   selector: 'app-sign-in',

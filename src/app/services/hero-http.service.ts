@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { API_BASE_URL } from "../constants/api-base-url";
 import { map, Observable } from "rxjs";
-import { HeroByNameResponse, HeroByNameSuccessResponse } from "../types/heroByNameResponse";
+import { HeroByNameResponse, HeroByNameSuccessResponse } from "../types/hero-by-name-response";
 
 @Injectable({ providedIn: 'root' })
 export class HeroHttpService {

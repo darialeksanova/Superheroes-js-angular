@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { catchError, of, tap } from 'rxjs';
-import { HeroByNameSuccessResponse } from 'src/app/types/heroByNameResponse';
+import { HeroByNameSuccessResponse } from 'src/app/types/hero-by-name-response';
 import { HeroHttpService } from '../../../../services/hero-http.service';
 import { Hero } from '../../../../types/hero';
 
