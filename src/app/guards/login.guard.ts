@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { CanActivate, Router } from "@angular/router";
 import { AccessTokenService } from "../services/access-token.service";
-import { UserData } from "../types/userData";
+import { UserData } from "../types/user-data";
 
 @Injectable({providedIn: 'root'})
 export class LoginGuard implements CanActivate {

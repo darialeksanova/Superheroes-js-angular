@@ -1,4 +1,4 @@
-import { UserAccessToken } from "./userAccessToken";
+import { UserAccessToken } from "./user-access-token";
 
 export interface UserData {
   username: string,
