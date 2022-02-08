@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BattleInfo } from 'src/app/types/battle-info';
 
 @Component({
   selector: 'app-battles-history-table',
   templateUrl: './battles-history-table.component.html',
-  styleUrls: ['./battles-history-table.component.scss']
+  styleUrls: ['./battles-history-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BattlesHistoryTableComponent {
   public battles: BattleInfo[] = [];
