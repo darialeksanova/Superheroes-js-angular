@@ -7,6 +7,8 @@ import { SearchFieldComponent } from "../hero-selection/components/search-field/
 import { HeroSelectionPageComponent } from "../hero-selection/pages/hero-selection-page/hero-selection-page.component";
 import { HomePageRoutingModule } from "./home-routing.module";
 import { SharedModule } from "../shared/shared.module";
+import { HeroInfoModule } from "../hero-info/hero-info.module";
+import { UserInfoModule } from "../user-info/user-info.module";
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { SharedModule } from "../shared/shared.module";
     CommonModule,
     ReactiveFormsModule,
     HomePageRoutingModule,
+    HeroInfoModule,
+    UserInfoModule,
     SharedModule
   ]
 })

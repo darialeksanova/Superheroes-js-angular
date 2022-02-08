@@ -1,6 +1,6 @@
-import { Hero } from "../types/hero";
+import { HeroPreview } from "../types/heroPreview";
 
-export const DEFAULT_HERO: Hero = {
+export const DEFAULT_HERO_PREVIEW: HeroPreview = {
   id: '',
   image: {
     url: ''

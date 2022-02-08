@@ -1,10 +1,10 @@
-import { Hero } from "./hero";
+import { HeroPreview } from "./heroPreview";
 
 export type HeroByNameResponse = HeroByNameSuccessResponse | HeroByNameErrorResponse;
 
 export interface HeroByNameSuccessResponse {
   response: 'success';
-  results: Array<Hero>;
+  results: Array<HeroPreview>;
 }
 
 export interface HeroByNameErrorResponse {

@@ -3,7 +3,13 @@
     <li class="navigation__title">Superheroes App</li>
     <li class="navigation__fight">Fight!</li>
     <li class="navigation__user">
-      <div class="navigation__user-info" (click)="openUserInfoPage()">User Info</div>
+      <div 
+        class="navigation__user-info" 
+        routerLink="/home/user-info" 
+        routerLinkActive="active-link"
+      >
+        User Info
+      </div>
       <div class="navigation__user-avatar">Avatar</div>
     </li>
   </nav>

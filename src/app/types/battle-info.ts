@@ -1,6 +1,12 @@
 export interface BattleInfo {
   battleDate: Date;
-  heroName: string;
-  opponentName: string;
+  hero: {
+    id: string;
+    name: string
+  }
+  opponent: {
+    id: string;
+    name: string
+  }
   battleResult: string;
 }

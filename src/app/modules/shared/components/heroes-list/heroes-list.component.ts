@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Hero } from 'src/app/types/hero';
+import { HeroPreview } from 'src/app/types/heroPreview';
 
 @Component({
   selector: 'app-heroes-list',
@@ -9,13 +9,13 @@ import { Hero } from 'src/app/types/hero';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroesListComponent {
-  @Input() public heroes: Hero[] = [];
+  @Input() public heroes: HeroPreview[] = [];
   @Input() public showAddHeroButton: boolean = false;
   @Input() public dynamicList: boolean = true;
 
   constructor(private _router: Router) {}
 
-  public trackByHeroId(_: number, hero: Hero): string {
+  public trackByHeroId(_: number, hero: HeroPreview): string {
     return hero.id;
   }
 

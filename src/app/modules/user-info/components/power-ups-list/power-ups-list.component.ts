@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { POWER_UPS_LIST } from 'src/app/constants/power-ups-list';
 import { PowerUp } from 'src/app/types/power-up';
 
 @Component({
   selector: 'app-power-ups-list',
   templateUrl: './power-ups-list.component.html',
-  styleUrls: ['./power-ups-list.component.scss']
+  styleUrls: ['./power-ups-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PowerUpsListComponent implements OnInit {
   public powerUps: PowerUp[] = POWER_UPS_LIST;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this._sortPowerUps();
   }
 
