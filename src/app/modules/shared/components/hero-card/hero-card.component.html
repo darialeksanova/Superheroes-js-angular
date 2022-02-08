@@ -1,0 +1,36 @@
+<div class="wrapper">
+  <div class="hero__img">
+    <img [src]="hero.image.url" (error)="setDefaultHeroImage(hero)">
+  </div>
+
+  <h2 class="hero__name">{{ hero.name }}</h2>
+
+  <ul class="hero__stats">
+    <li class="hero__stats_point">Intelligence: {{ hero.powerstats.intelligence }}</li>
+    <li class="hero__stats_point">Strength: {{ hero.powerstats.strength }}</li>
+    <li class="hero__stats_point">Speed: {{ hero.powerstats.speed }}</li>
+    <li class="hero__stats_point">Durability: {{ hero.powerstats.durability }}</li>
+    <li class="hero__stats_point">Power: {{ hero.powerstats.power }}</li>
+    <li class="hero__stats_point">Combat: {{ hero.powerstats.combat }}</li>
+  </ul>
+
+  <div class="hero__actions">
+    <button 
+      *ngIf="!isHeroSelected"
+      class="hero__actions_select"
+      (click)="selectHero()"
+    >
+      Select
+    </button>
+  
+    <button 
+      *ngIf="isHeroSelected"
+      class="hero__actions_remove"
+      (click)="removeHero()"
+    >
+      Remove
+    </button>
+
+    <button class="hero__actions_view-more">View more</button>
+  </div>
+</div>

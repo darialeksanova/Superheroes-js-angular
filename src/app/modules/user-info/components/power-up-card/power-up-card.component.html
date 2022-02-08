@@ -1,0 +1,11 @@
+<div class="card" [class.disabled]="!powerUp.usesLeft">
+  <div class="card__img">
+    <img [src]="powerUp.img">
+  </div>
+
+  <div class="card__content">
+    <h3 class="card__content_title">{{ powerUp.title }}</h3>
+    <div class="card__content_desctiprion">{{ powerUp.description }}</div>
+    <div class="card__content_uses-left">Uses left: {{ powerUp.usesLeft }}</div>
+  </div>
+</div>

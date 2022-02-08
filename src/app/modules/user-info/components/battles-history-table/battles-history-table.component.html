@@ -1,0 +1,42 @@
+<table class="history-table">
+  <tr>
+    <th class="history-table__header">
+      <div class="history-table__header_content">
+        Battle Date and Time
+        <div class="history-table__header_sort-icon" (click)="sortByDate()">
+          <img src="assets/icons/sort-solid.svg">
+        </div>
+      </div>
+    </th>
+    <th class="history-table__header">
+      <div class="history-table__header_content">
+        Hero Name
+        <div class="history-table__header_sort-icon" (click)="sortByHeroName()">
+          <img src="assets/icons/sort-solid.svg">
+        </div>
+      </div>
+    </th>
+    <th class="history-table__header">
+      <div class="history-table__header_content">
+        Opponent Name
+        <div class="history-table__header_sort-icon" (click)="sortByOpponentName()">
+          <img src="assets/icons/sort-solid.svg">
+        </div>
+      </div>
+    </th>
+    <th class="history-table__header">
+      <div class="history-table__header_content">
+        Battle Result
+        <div class="history-table__header_sort-icon" (click)="sortByResult()">
+          <img src="assets/icons/sort-solid.svg">
+        </div>
+      </div>
+    </th>
+  </tr>
+  <tr *ngFor="let battle of battles">
+    <td class="history-table__cell">{{ battle.battleDate | date }}</td>
+    <td class="history-table__cell clickable">{{ battle.heroName }}</td>
+    <td class="history-table__cell clickable">{{ battle.opponentName }}</td>
+    <td class="history-table__cell">{{ battle.battleResult }}</td>
+  </tr>
+</table>

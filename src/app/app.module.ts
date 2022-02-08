@@ -8,6 +8,7 @@ import { HomePageComponent } from './modules/home/pages/home-page/home-page.comp
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
+import { UserInfoModule } from './modules/user-info/user-info.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    UserInfoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
