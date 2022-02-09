@@ -55,7 +55,11 @@ export class FightPageComponent implements OnInit {
     this._heroHttpService.getHeroPreviewById(randomId)
       .pipe(
         tap((response: HeroPreview) => {
-          this.randomOpponent = response;
+          if (Object.values(response.powerstats).every(value => value !== 'null')) {
+            this.randomOpponent = response;
+          } else {
+            this._getRandomOpponent();
+          }
           this._cdRef.markForCheck();
         }),
         catchError((error: unknown) => {

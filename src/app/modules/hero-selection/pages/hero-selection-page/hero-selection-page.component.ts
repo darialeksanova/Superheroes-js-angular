@@ -26,7 +26,7 @@ export class HeroSelectionPageComponent {
     this._heroService.getHeroesByName(searchValue)
       .pipe(
         tap((response: HeroByNameSuccessResponse) => {
-          this.heroes = response.results;
+          this.heroes = response.results.filter(hero => Object.values(hero.powerstats).every(value => value !== "null"));
           this._cdRef.markForCheck();
         }),
         catchError((error: unknown) => {
