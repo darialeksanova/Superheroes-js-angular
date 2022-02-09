@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { catchError, of, tap } from 'rxjs';
+import { catchError, of, tap, timer } from 'rxjs';
 import { DEFAULT_BATTLE_DATA } from 'src/app/constants/default-battle-data';
 import { DEFAULT_HERO_PREVIEW } from 'src/app/constants/default-hero-preview';
 import { POSSIBLE_BATTLE_RESULTS } from 'src/app/constants/possible-battle-results';
+import { PowerUpTitle } from 'src/app/constants/power-up-title';
 import { BattlesDataService } from 'src/app/services/battles-data.service';
 import { HeroHttpService } from 'src/app/services/hero-http.service';
 import { PowerUpsService } from 'src/app/services/power-ups.service';
 import { BattleData } from 'src/app/types/battle-data';
-import { HeroPreview } from 'src/app/types/heroPreview';
+import { HeroPreview } from 'src/app/types/hero-preview';
 import { PowerUp } from 'src/app/types/power-up';
 
 @Component({
@@ -32,7 +33,7 @@ export class FightPageComponent implements OnInit {
     private _cdRef: ChangeDetectorRef
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this._getSelectedHeroFormStorage();
     this._getRandomOpponent();
   }
@@ -80,29 +81,33 @@ export class FightPageComponent implements OnInit {
   public fight(): void {
     this.isFightInProgress = true;
 
-    setTimeout(() => {
-      this.isFightInProgress = false;
-      this.battleData = {
-        date: new Date(),
-        hero: this.selectedHero,
-        opponent: this.randomOpponent,
-        result: this._generateBattleResult(),
-      };
-      this._battlesDataService.battlesData = [...this._battlesDataService.battlesData, this.battleData];
-      this._powerUpsService.powerUps = this._powerUpsService.powerUps.map(powerUp => {
-        if (this.selectedPowerUps.includes(powerUp)) {
-          return {
-            ...powerUp,
-            usesLeft: powerUp.usesLeft - 1,
-          }
-        }
-        return powerUp;
-      })
-      this.powerUps = this._powerUpsService.powerUps;
-      this._hideUnavailablePowerUps();
-      this._cdRef.markForCheck();
-      this.isBattleResultModalShown = true;
-    }, 5000);
+    timer(5000)
+      .pipe(
+        tap(() => {
+          this.isFightInProgress = false;
+          this.battleData = {
+            date: new Date(),
+            hero: this.selectedHero,
+            opponent: this.randomOpponent,
+            result: this._generateBattleResult(),
+          };
+          this._battlesDataService.battlesData = [...this._battlesDataService.battlesData, this.battleData];
+          this._powerUpsService.powerUps = this._powerUpsService.powerUps.map(powerUp => {
+            if (this.selectedPowerUps.includes(powerUp)) {
+              return {
+                ...powerUp,
+                usesLeft: powerUp.usesLeft - 1,
+              }
+            }
+            return powerUp;
+          })
+          this.powerUps = this._powerUpsService.powerUps;
+          this._hideUnavailablePowerUps();
+          this._cdRef.markForCheck();
+          this.isBattleResultModalShown = true;
+        })
+      )
+      .subscribe();
   }
 
   private _hideUnavailablePowerUps(): void {
@@ -136,7 +141,7 @@ export class FightPageComponent implements OnInit {
     const incrementPoints: number = 10;
 
     switch(powerUpTitle) {
-      case 'Captain America Shield': {
+      case PowerUpTitle.CAPITAN_AMERICA_SHIELD: {
         const updatedDurability: string = (parseInt(this.selectedHero.powerstats.durability) + incrementPoints).toString();
 
         this.selectedHero = {
@@ -149,7 +154,7 @@ export class FightPageComponent implements OnInit {
         break;
       };
 
-      case 'Mjolnir': {
+      case PowerUpTitle.MJOLNIR: {
         const updatedPower: string = (parseInt(this.selectedHero.powerstats.power) + incrementPoints).toString();
 
         this.selectedHero = {
@@ -162,7 +167,7 @@ export class FightPageComponent implements OnInit {
         break;
       };
 
-      case "Ironman's Nano Armour": {
+      case PowerUpTitle.IRONMAN_NANO_ARMOUR: {
         const updatedCombat: string = (parseInt(this.selectedHero.powerstats.combat) + incrementPoints).toString();
 
         this.selectedHero = {
@@ -175,7 +180,7 @@ export class FightPageComponent implements OnInit {
         break;
       };
 
-      case "Dr. Strange's cloak": {
+      case PowerUpTitle.DR_STRANGE_CLOAK: {
         const updatedIntelligence: string = (parseInt(this.selectedHero.powerstats.intelligence) + incrementPoints).toString();
 
         this.selectedHero = {
@@ -188,7 +193,7 @@ export class FightPageComponent implements OnInit {
         break;
       };
 
-      case "Green Lantern's ring": {
+      case PowerUpTitle.GREEN_LANTERN_RING: {
         const updatedStrength: string = (parseInt(this.selectedHero.powerstats.strength) + incrementPoints).toString();
 
         this.selectedHero = {
@@ -201,7 +206,7 @@ export class FightPageComponent implements OnInit {
         break;
       };
 
-      case 'Flash boots': {
+      case PowerUpTitle.FLASH_BOOTS: {
         const updatedSpeed: string = (parseInt(this.selectedHero.powerstats.speed) + incrementPoints).toString();
 
         this.selectedHero = {
@@ -225,7 +230,7 @@ export class FightPageComponent implements OnInit {
     const decrementPoints: number = 10;
 
     switch(powerUpTitle) {
-      case 'Captain America Shield': {
+      case PowerUpTitle.CAPITAN_AMERICA_SHIELD: {
         const updatedDurability: string = (parseInt(this.selectedHero.powerstats.durability) - decrementPoints).toString();
 
         this.selectedHero = {
@@ -238,7 +243,7 @@ export class FightPageComponent implements OnInit {
         break;
       };
 
-      case 'Mjolnir': {
+      case PowerUpTitle.MJOLNIR: {
         const updatedPower: string = (parseInt(this.selectedHero.powerstats.power) - decrementPoints).toString();
 
         this.selectedHero = {
@@ -251,7 +256,7 @@ export class FightPageComponent implements OnInit {
         break;
       };
 
-      case "Ironman's Nano Armour": {
+      case PowerUpTitle.IRONMAN_NANO_ARMOUR: {
         const updatedCombat: string = (parseInt(this.selectedHero.powerstats.combat) - decrementPoints).toString();
 
         this.selectedHero = {
@@ -264,7 +269,7 @@ export class FightPageComponent implements OnInit {
         break;
       };
 
-      case "Dr. Strange's cloak": {
+      case PowerUpTitle.DR_STRANGE_CLOAK: {
         const updatedIntelligence: string = (parseInt(this.selectedHero.powerstats.intelligence) - decrementPoints).toString();
 
         this.selectedHero = {
@@ -277,7 +282,7 @@ export class FightPageComponent implements OnInit {
         break;
       };
 
-      case "Green Lantern's ring": {
+      case PowerUpTitle.GREEN_LANTERN_RING: {
         const updatedStrength: string = (parseInt(this.selectedHero.powerstats.strength) - decrementPoints).toString();
 
         this.selectedHero = {
@@ -290,7 +295,7 @@ export class FightPageComponent implements OnInit {
         break;
       };
 
-      case 'Flash boots': {
+      case PowerUpTitle.FLASH_BOOTS: {
         const updatedSpeed: string = (parseInt(this.selectedHero.powerstats.speed) - decrementPoints).toString();
 
         this.selectedHero = {
@@ -307,6 +312,10 @@ export class FightPageComponent implements OnInit {
         this.selectedHero = this.selectedHero;
       }
     }
+  }
+
+  public trackByTitle(_: number, powerUp: PowerUp): string {
+    return powerUp.title;
   }
 
   public closeModal(): void {

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/
 import { catchError, of, tap } from 'rxjs';
 import { HeroByNameSuccessResponse } from 'src/app/types/hero-by-name-response';
 import { HeroHttpService } from '../../../../services/hero-http.service';
-import { HeroPreview } from '../../../../types/heroPreview';
+import { HeroPreview } from '../../../../types/hero-preview';
 
 @Component({
   selector: 'app-hero-selection-page',

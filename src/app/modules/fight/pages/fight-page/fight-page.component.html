@@ -9,7 +9,7 @@
       <button class="fight-menu__start-button" (click)="fight()">{{ 'Fight' | uppercase }}</button>
       <ul class="fight-menu__power-ups">
         <li 
-          *ngFor="let powerUp of powerUps"
+          *ngFor="let powerUp of powerUps; trackBy: trackByTitle"
           [class.selected]="selectedPowerUps.includes(powerUp)"
           (click)="togglePowerUp(powerUp)"
         >

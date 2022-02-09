@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { CanActivate, Router } from "@angular/router";
+import { tap, timer } from "rxjs";
 import { AccessTokenService } from "../services/access-token.service";
 import { UserData } from "../types/user-data";
 
 @Injectable({providedIn: 'root'})
 export class LoginGuard implements CanActivate {
-
   constructor(
     private _accessTokenService: AccessTokenService,
     private _router: Router,
@@ -30,7 +30,12 @@ export class LoginGuard implements CanActivate {
     if (!isTokenValid) {
       this._router.navigate(['sign-in']);
       this._snackBar.open('Your current session has expired. Please login again to continue using this app!');
-      setTimeout(() => this._snackBar.dismiss(), 3000);
+
+      timer(3000)
+        .pipe(
+          tap(() => this._snackBar.dismiss()),
+        )
+        .subscribe();
     }
 
     return isTokenValid;

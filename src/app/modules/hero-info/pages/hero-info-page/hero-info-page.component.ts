@@ -4,7 +4,7 @@ import { map } from 'rxjs';
 import { DEFAULT_HERO_FULL } from 'src/app/constants/default-hero-full';
 import { DEFAULT_HERO_IMAGE_LINK } from 'src/app/constants/default-hero-img-link';
 import { HeroHttpService } from 'src/app/services/hero-http.service';
-import { HeroFull } from 'src/app/types/heroFull';
+import { HeroFull } from 'src/app/types/hero-full';
 
 @Component({
   selector: 'app-hero-info-page',

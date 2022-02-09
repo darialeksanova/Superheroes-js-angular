@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { HeroPreview } from 'src/app/types/heroPreview';
+import { HeroPreview } from 'src/app/types/hero-preview';
 
 @Component({
   selector: 'app-user-info-page',

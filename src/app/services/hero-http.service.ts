@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { API_BASE_URL } from "../constants/api-base-url";
 import { map, Observable } from "rxjs";
-import { HeroFull } from "../types/heroFull";
-import { HeroPreview } from "../types/heroPreview";
+import { HeroFull } from "../types/hero-full";
+import { HeroPreview } from "../types/hero-preview";
 import { HeroByNameResponse, HeroByNameSuccessResponse } from "../types/hero-by-name-response";
 import { HeroByIdResponse } from "../types/hero-by-id-response";
 

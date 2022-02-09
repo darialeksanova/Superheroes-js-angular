@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { HeroPreview } from 'src/app/types/heroPreview';
+import { HeroPreview } from 'src/app/types/hero-preview';
 
 @Component({
   selector: 'app-heroes-list',

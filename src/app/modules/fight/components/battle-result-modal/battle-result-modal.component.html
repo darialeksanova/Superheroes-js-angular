@@ -8,9 +8,9 @@
       <div>Opponent Name: {{ battleData.opponent.name }}</div>
       <div>Battle Result:
         <span [ngSwitch]="battleData.result">
-          <span *ngSwitchCase="'Won'" class="green-text">{{ battleData.result | uppercase }}</span>
-          <span *ngSwitchCase="'Lost'" class="red-text">{{ battleData.result | uppercase }}</span>
-          <span *ngSwitchCase="'Draw'" class="yellow-text">{{ battleData.result | uppercase }}</span>
+          <span *ngSwitchCase="battleResult.WON" class="green-text">{{ battleData.result | uppercase }}</span>
+          <span *ngSwitchCase="battleResult.LOST" class="red-text">{{ battleData.result | uppercase }}</span>
+          <span *ngSwitchCase="battleResult.DRAW" class="yellow-text">{{ battleData.result | uppercase }}</span>
           <span *ngSwitchDefault class="">{{ battleData.result | uppercase }}</span>
         </span>
       </div>

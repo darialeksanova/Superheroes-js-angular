@@ -1,4 +1,4 @@
-import { HeroFull } from "../types/heroFull";
+import { HeroFull } from "../types/hero-full";
 
 export const DEFAULT_HERO_FULL: HeroFull = {
   id: '',

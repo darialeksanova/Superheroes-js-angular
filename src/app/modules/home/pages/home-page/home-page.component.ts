@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { HeroPreview } from 'src/app/types/heroPreview';
+import { HeroPreview } from 'src/app/types/hero-preview';
 
 @Component({
   selector: 'app-home-page',

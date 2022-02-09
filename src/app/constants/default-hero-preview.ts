@@ -1,4 +1,4 @@
-import { HeroPreview } from "../types/heroPreview";
+import { HeroPreview } from "../types/hero-preview";
 
 export const DEFAULT_HERO_PREVIEW: HeroPreview = {
   response: "success",
