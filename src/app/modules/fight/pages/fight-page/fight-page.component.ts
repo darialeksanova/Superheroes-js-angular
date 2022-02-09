@@ -102,7 +102,7 @@ export class FightPageComponent implements OnInit {
       this._hideUnavailablePowerUps();
       this._cdRef.markForCheck();
       this.isBattleResultModalShown = true;
-    }, 1000);
+    }, 5000);
   }
 
   private _hideUnavailablePowerUps(): void {
