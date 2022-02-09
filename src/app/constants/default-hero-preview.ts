@@ -1,6 +1,7 @@
 import { HeroPreview } from "../types/heroPreview";
 
 export const DEFAULT_HERO_PREVIEW: HeroPreview = {
+  response: "success",
   id: '',
   image: {
     url: ''

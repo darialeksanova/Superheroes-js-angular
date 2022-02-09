@@ -1,7 +1,14 @@
 <header class="header">
   <nav class="navigation">
     <li class="navigation__title">Superheroes App</li>
-    <li class="navigation__fight">Fight!</li>
+    <li 
+      class="navigation__fight"
+      (click)="handleFightPageLinkClick()"
+      routerLink="/home/fight"
+      routerLinkActive="active-link"
+    >
+      Fight!
+    </li>
     <li class="navigation__user">
       <div 
         class="navigation__user-info" 

@@ -1,0 +1,1 @@
+export const POSSIBLE_BATTLE_RESULTS: string[] = ['Won', 'Lost', 'Draw'];

@@ -9,13 +9,20 @@ import { HomePageRoutingModule } from "./home-routing.module";
 import { SharedModule } from "../shared/shared.module";
 import { HeroInfoModule } from "../hero-info/hero-info.module";
 import { UserInfoModule } from "../user-info/user-info.module";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FightPageComponent } from "../fight/pages/fight-page/fight-page.component";
+import { FightHeroCardComponent } from "../fight/components/fight-hero-card/fight-hero-card.component";
+import { BattleResultModalComponent } from "../fight/components/battle-result-modal/battle-result-modal.component";
 
 @NgModule({
   declarations: [
     SearchFieldComponent,
     AlphabetSelectionComponent,
     RecentSearchesComponent,
-    HeroSelectionPageComponent
+    HeroSelectionPageComponent,
+    FightPageComponent,
+    FightHeroCardComponent,
+    BattleResultModalComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +30,8 @@ import { UserInfoModule } from "../user-info/user-info.module";
     HomePageRoutingModule,
     HeroInfoModule,
     UserInfoModule,
-    SharedModule
+    SharedModule,
+    MatSnackBarModule
   ]
 })
 export class HomePageModule {}

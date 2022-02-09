@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { POWER_UPS_LIST } from 'src/app/constants/power-ups-list';
+import { PowerUpsService } from 'src/app/services/power-ups.service';
 import { PowerUp } from 'src/app/types/power-up';
 
 @Component({
@@ -9,7 +9,9 @@ import { PowerUp } from 'src/app/types/power-up';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PowerUpsListComponent implements OnInit {
-  public powerUps: PowerUp[] = POWER_UPS_LIST;
+  public powerUps: PowerUp[] = this._powerUpsService.powerUps;
+
+  constructor(private _powerUpsService: PowerUpsService) {}
 
   public ngOnInit(): void {
     this._sortPowerUps();

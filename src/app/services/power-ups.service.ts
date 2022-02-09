@@ -1,6 +1,7 @@
+import { Injectable } from "@angular/core";
 import { PowerUp } from "../types/power-up";
 
-export const POWER_UPS_LIST: PowerUp[] = [
+const POWER_UPS_LIST: PowerUp[] = [
   {
     title: 'Captain America Shield',
     description: 'Durability +10',
@@ -8,7 +9,7 @@ export const POWER_UPS_LIST: PowerUp[] = [
     img: 'assets/img/Captain-America-Shield.png'
   },
   {
-    title: 'MjoInir',
+    title: 'Mjolnir',
     description: 'Power +10',
     usesLeft: 5,
     img: 'assets/img/Mjolnir.png'
@@ -38,3 +39,16 @@ export const POWER_UPS_LIST: PowerUp[] = [
     img: 'assets/img/flash-boots.png'
   }
 ];
+
+@Injectable({ providedIn: 'root' })
+export class PowerUpsService {
+  private _powerUps: PowerUp[] = POWER_UPS_LIST;
+
+  public get powerUps(): PowerUp[] {
+    return this._powerUps;
+  }
+
+  public set powerUps(updatedPowerUps: PowerUp[]) {
+    this._powerUps = updatedPowerUps;
+  }
+}

@@ -1,5 +1,5 @@
-export interface BattleInfo {
-  battleDate: Date;
+export interface BattleData {
+  date: Date;
   hero: {
     id: string;
     name: string
@@ -8,5 +8,5 @@ export interface BattleInfo {
     id: string;
     name: string
   }
-  battleResult: string;
+  result: string;
 }

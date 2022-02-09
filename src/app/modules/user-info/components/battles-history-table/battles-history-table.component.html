@@ -34,9 +34,9 @@
     </th>
   </tr>
   <tr *ngFor="let battle of battles">
-    <td class="history-table__cell">{{ battle.battleDate | date }}</td>
+    <td class="history-table__cell">{{ battle.date | date:'medium' }}</td>
     <td class="history-table__cell clickable" (click)="navigateToHeroInfoPage(battle.hero.id)">{{ battle.hero.name }}</td>
     <td class="history-table__cell clickable" (click)="navigateToHeroInfoPage(battle.opponent.id)">{{ battle.opponent.name }}</td>
-    <td class="history-table__cell">{{ battle.battleResult }}</td>
+    <td class="history-table__cell">{{ battle.result }}</td>
   </tr>
 </table>

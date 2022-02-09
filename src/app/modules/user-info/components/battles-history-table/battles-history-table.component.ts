@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { BattleInfo } from 'src/app/types/battle-info';
+import { BattlesDataService } from 'src/app/services/battles-data.service';
+import { BattleData } from 'src/app/types/battle-data';
 
 @Component({
   selector: 'app-battles-history-table',
@@ -9,12 +10,15 @@ import { BattleInfo } from 'src/app/types/battle-info';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BattlesHistoryTableComponent {
-  public battles: BattleInfo[] = [];
+  public battles: BattleData[] = this._battlesDataService.battlesData;
 
-  constructor(private _router: Router) {}
+  constructor(
+    private _router: Router,
+    private _battlesDataService: BattlesDataService
+  ) {}
 
   public sortByDate(): void {
-    this.battles = [...this.battles].sort((battle1, battle2) => battle1.battleDate > battle2.battleDate ? 1 : -1);
+    this.battles = [...this.battles].sort((battle1, battle2) => battle1.date > battle2.date ? 1 : -1);
   }
 
   public sortByHeroName(): void {
@@ -26,10 +30,11 @@ export class BattlesHistoryTableComponent {
   }
 
   public sortByResult(): void {
-    const wonBattles: BattleInfo[] = this.battles.filter(battle => battle.battleResult === 'Won');
-    const lostBattles: BattleInfo[] = this.battles.filter(battle => battle.battleResult === 'Lost');
+    const wonBattles: BattleData[] = this.battles.filter(battle => battle.result === 'Won');
+    const lostBattles: BattleData[] = this.battles.filter(battle => battle.result === 'Lost');
+    const drawnBattles: BattleData[] = this.battles.filter(battle => battle.result === 'Draw');
 
-    this.battles = wonBattles.concat(lostBattles);
+    this.battles = wonBattles.concat(lostBattles, drawnBattles);
   }
 
   public navigateToHeroInfoPage(id: string): void {

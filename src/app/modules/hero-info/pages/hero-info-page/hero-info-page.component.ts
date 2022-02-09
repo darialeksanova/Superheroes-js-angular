@@ -36,45 +36,7 @@ export class HeroInfoPageComponent implements OnInit {
   private _getFullHeroById(id: string): void {
     this._heroHttpService.getFullHeroInfoById(id)
       .subscribe((heroFull: HeroFull) => {
-        this.hero = {
-          id: heroFull.id,
-          image: {
-            url: heroFull.image.url,
-          },
-          name: heroFull.name,
-          powerstats: {
-            intelligence: heroFull.powerstats.intelligence,
-            strength: heroFull.powerstats.strength,
-            speed: heroFull.powerstats.speed,
-            durability: heroFull.powerstats.durability,
-            power: heroFull.powerstats.power,
-            combat: heroFull.powerstats.combat
-          },
-          biography: {
-            'full-name': heroFull.biography['full-name'],
-            'alter-egos': heroFull.biography['alter-egos'],
-            'place-of-birth': heroFull.biography['place-of-birth'],
-            'first-appearance': heroFull.biography['first-appearance'],
-            publisher: heroFull.biography.publisher,
-            alignment: heroFull.biography.alignment
-          },
-          appearance: {
-            gender: heroFull.appearance.gender,
-            race: heroFull.appearance.race,
-            height: heroFull.appearance.height,
-            weight: heroFull.appearance.weight,
-            "eye-color": heroFull.appearance['eye-color'],
-            "hair-color": heroFull.appearance['hair-color']
-          },
-          work: {
-            occupation: heroFull.work.occupation,
-            base: heroFull.work.base,
-          },
-          connections: {
-            "group-affiliation": heroFull.connections['group-affiliation'],
-            relatives: heroFull.connections.relatives,
-          }
-        }
+        this.hero = heroFull;
         this._cdRef.markForCheck();
       });
   }
