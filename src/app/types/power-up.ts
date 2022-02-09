@@ -1,5 +1,7 @@
+import { PowerUpTitle } from "../constants/power-up-title";
+
 export interface PowerUp {
-  title: string;
+  title: PowerUpTitle;
   description: string;
   usesLeft: number;
   img: string;

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 import { Router } from '@angular/router';
 import { DEFAULT_HERO_PREVIEW } from 'src/app/constants/default-hero-preview';
 import { DEFAULT_HERO_IMAGE_LINK } from 'src/app/constants/default-hero-img-link';
-import { HeroPreview } from 'src/app/types/heroPreview';
+import { HeroPreview } from 'src/app/types/hero-preview';
 
 @Component({
   selector: 'app-hero-card',

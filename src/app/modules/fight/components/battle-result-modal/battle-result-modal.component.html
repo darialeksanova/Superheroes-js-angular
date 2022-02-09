@@ -1,0 +1,22 @@
+<div class="wrapper">
+  <div class="backdrop"></div>
+  <div class="modal">
+    <h2 class="modal__title">Battle Results</h2>
+    <div class="modal__content">
+      <div>Battle Date: {{ battleData.date | date:'medium' }}</div>
+      <div>Hero Name: {{ battleData.hero.name }}</div>
+      <div>Opponent Name: {{ battleData.opponent.name }}</div>
+      <div>Battle Result:
+        <span [ngSwitch]="battleData.result">
+          <span *ngSwitchCase="battleResult.WON" class="green-text">{{ battleData.result | uppercase }}</span>
+          <span *ngSwitchCase="battleResult.LOST" class="red-text">{{ battleData.result | uppercase }}</span>
+          <span *ngSwitchCase="battleResult.DRAW" class="yellow-text">{{ battleData.result | uppercase }}</span>
+          <span *ngSwitchDefault class="">{{ battleData.result | uppercase }}</span>
+        </span>
+      </div>
+    </div>
+    <div class="modal__actions">
+      <button class="modal__actions_ok-button" (click)="closeModal()">Ok!</button>
+    </div>
+  </div>
+</div>

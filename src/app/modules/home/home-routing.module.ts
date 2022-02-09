@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { HeroSelectionPageComponent } from "../hero-selection/pages/hero-selection-page/hero-selection-page.component";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 
 const routes: Routes = [
@@ -12,13 +11,16 @@ const routes: Routes = [
   {
     path: '', component: HomePageComponent, children: [
       {
-        path: 'hero-selection', component: HeroSelectionPageComponent
+        path: 'hero-selection', loadChildren: () => import('../hero-selection/hero-selection.module').then(m => m.HeroSelectionModule)
       },
       {
         path: 'user-info', loadChildren: () => import('../user-info/user-info.module').then(m => m.UserInfoModule)
       },
       {
         path: 'hero-info/:id', loadChildren: () => import('../hero-info/hero-info.module').then(m => m.HeroInfoModule)
+      },
+      {
+        path: 'fight', loadChildren: () => import('../fight/fight.module').then(m => m.FightModule)
       }
     ]
   }
@@ -28,4 +30,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class HomePageRoutingModule { }
+export class HomeRoutingModule { }

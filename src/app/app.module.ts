@@ -6,9 +6,8 @@ import { AppComponent } from './app.component';
 import { LoginPageComponent } from './modules/login/pages/login-page/login-page.component';
 import { HomePageComponent } from './modules/home/pages/home-page/home-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
-import { UserInfoModule } from './modules/user-info/user-info.module';
 
 @NgModule({
   declarations: [

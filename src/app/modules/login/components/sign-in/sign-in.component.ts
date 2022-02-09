@@ -12,8 +12,8 @@ import { UserData } from "src/app/types/user-data";
 })
 export class SignInComponent {
   public readonly form: FormGroup = new FormGroup({
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
+    email: new FormControl('test@gmail.com', Validators.required),
+    password: new FormControl('111!Q', Validators.required)
   });
 
   constructor(

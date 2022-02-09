@@ -1,4 +1,4 @@
-import { HeroPreview } from "./heroPreview";
+import { HeroPreview } from "./hero-preview";
 
 export type HeroByNameResponse = HeroByNameSuccessResponse | HeroByNameErrorResponse;
 

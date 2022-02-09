@@ -1,0 +1,30 @@
+<div class="wrapper">
+  <div class="background">
+    <img src="/assets/img/hero-selection-page-bg.jpeg">
+  </div>
+  <div class="container">
+    <app-fight-hero-card [hero]="selectedHero"></app-fight-hero-card>
+    <div class="fight-menu">
+      <h2 class="fight-menu__heroes-names">{{ selectedHero.name }} vs. {{ randomOpponent.name }}</h2>
+      <button class="fight-menu__start-button" (click)="fight()">{{ 'Fight' | uppercase }}</button>
+      <ul class="fight-menu__power-ups">
+        <li 
+          *ngFor="let powerUp of powerUps; trackBy: trackByTitle"
+          [class.selected]="selectedPowerUps.includes(powerUp)"
+          (click)="togglePowerUp(powerUp)"
+        >
+          {{ powerUp.title }} ({{ powerUp.usesLeft }})
+        </li>
+      </ul>
+    </div>
+    <app-fight-hero-card [hero]="randomOpponent"></app-fight-hero-card>
+  </div>
+</div>
+
+<div *ngIf="isFightInProgress" class="loader">
+  <app-loader></app-loader>
+</div>
+
+<div *ngIf="isBattleResultModalShown" class="battle-result-modal">
+  <app-battle-result-modal [battleData]="battleData" (onModalClose)="closeModal()"></app-battle-result-modal>
+</div>

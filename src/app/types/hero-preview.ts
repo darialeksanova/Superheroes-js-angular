@@ -1,4 +1,5 @@
 export interface HeroPreview {
+  response: "success";
   id: string;
   image: {
     url: string;
