@@ -42,5 +42,6 @@ export class HomePageComponent {
   private _navigateToHeroSelectionPage(): void {
     this._router.navigate(['/home/hero-selection']);
     this._snackBar.open("You haven't chosen any heroes. Select at least two of them and go fighting!");
+    setTimeout(() => this._snackBar.dismiss(), 3000);
   }
 }

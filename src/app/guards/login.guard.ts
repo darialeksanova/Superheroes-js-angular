@@ -30,6 +30,7 @@ export class LoginGuard implements CanActivate {
     if (!isTokenValid) {
       this._router.navigate(['sign-in']);
       this._snackBar.open('Your current session has expired. Please login again to continue using this app!');
+      setTimeout(() => this._snackBar.dismiss(), 3000);
     }
 
     return isTokenValid;
